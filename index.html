@@ -2,116 +2,141 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bynishtha</title>
+  <title>Happiest 20th Birthday Bubu 🎂</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
-    body, html {
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
       margin: 0;
       padding: 0;
+      font-family: 'Press Start 2P', cursive;
+      background: #fff3e0;
+      color: #444;
       overflow: hidden;
-      font-family: 'Comic Sans MS', cursive;
-      background: #fffaf5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
 
-    .intro-modal {
+    .wrapper {
+      background-color: white;
+      padding: 40px 25px;
+      border-radius: 20px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+      max-width: 1000px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 0.85rem;
+      color: #ff7096;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .photo {
+      width: 180px;
+      height: auto;
+      border-radius: 14px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+      margin-bottom: 25px;
+    }
+
+    .button {
+      background-color: #ff82a9;
+      color: white;
+      padding: 12px 22px;
+      font-size: 0.6rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .button:hover {
+      background-color: #e86a91;
+      transform: translateY(-2px);
+    }
+
+    audio {
+      display: none;
+    }
+
+    /* Modal Styles */
+    .modal {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(255, 245, 235, 0.95);
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      z-index: 10;
+      z-index: 1000;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .modal-content {
+      background-color: #fff8f0;
+      padding: 30px;
+      border-radius: 12px;
       text-align: center;
-      padding: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      max-width: 300px;
     }
 
-    .intro-modal h1 {
-      font-size: 1.8em;
-      color: #e091a0;
-      margin-bottom: 10px;
-    }
-
-    .intro-modal p {
-      font-size: 1em;
-      color: #555;
+    .modal-content h2 {
+      color: #ff7096;
+      font-size: 0.8rem;
       margin-bottom: 20px;
+      line-height: 1.4;
     }
 
-    .enter-btn {
-      padding: 10px 20px;
-      background-color: #ffccda;
+    .close-button {
+      margin-top: 15px;
+      background-color: #ff82a9;
+      color: white;
       border: none;
-      border-radius: 20px;
-      font-size: 1em;
-      color: #444;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 0.65rem;
       cursor: pointer;
-      box-shadow: 2px 2px 5px #ccc;
     }
 
-    .floating {
-      position: absolute;
-      width: 30px;
-      height: 30px;
-      pointer-events: none;
-      animation: float 10s linear infinite;
-      opacity: 0.7;
-    }
-
-    @keyframes float {
-      from { transform: translateY(100vh) rotate(0deg); }
-      to { transform: translateY(-10vh) rotate(360deg); }
-    }
-
-    .content {
-      display: none;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .crochet-item {
-      font-size: 1.2em;
-      color: #333;
-      margin-top: 30px;
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
 </head>
 <body>
-  <!-- Background music -->
-  <audio id="bgMusic" loop>
-    <source src="https://files.catbox.moe/q7pr5l.mp3" type="audio/mpeg" />
-    Your browser does not support the audio element.
+
+  <!-- Background Music -->
+  <audio autoplay loop>
+    <source src="music/totoro.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- Floating Elements -->
-  <img src="https://i.imgur.com/PRG2OtM.png" class="floating" style="left: 10%; animation-delay: 0s;" />
-  <img src="https://i.imgur.com/FVo2qph.png" class="floating" style="left: 30%; animation-delay: 2s;" />
-  <img src="https://i.imgur.com/zp2O3Xz.png" class="floating" style="left: 50%; animation-delay: 4s;" />
-  <img src="https://i.imgur.com/FVo2qph.png" class="floating" style="left: 70%; animation-delay: 6s;" />
-  <img src="https://i.imgur.com/PRG2OtM.png" class="floating" style="left: 90%; animation-delay: 8s;" />
-
-  <!-- Intro Modal -->
-  <div class="intro-modal" id="introModal">
-    <h1>Happy 20th Birthday Bubu!</h1>
-    <p>Welcome to your dream crochet shop — made with love by Vanit.</p>
-    <button class="enter-btn" onclick="enterSite()">Enter</button>
+  <!-- Birthday Modal -->
+  <div id="birthdayModal" class="modal">
+    <div class="modal-content">
+      <h2>Happy 20th Birthday Bubu!<br>You make this world a softer, warmer place.</h2>
+      <button class="close-button" onclick="document.getElementById('birthdayModal').style.display='none'">Enter</button>
+    </div>
   </div>
 
   <!-- Main Content -->
-  <div class="content" id="mainContent">
-    <h2>Welcome to Bynishtha</h2>
-    <div class="crochet-item">Cute crochet creations coming soon...</div>
+  <div class="wrapper">
+    <h1>Happiest 20th Birthday<br>Nishtha Kadiwala</h1>
+    <img src="images/nishtha-cover.webp" alt="Nishtha Photo" class="photo">
+    <br><br>
+    <a href="Home.html" class="button">Welcome to your shop!</a>
   </div>
 
-  <script>
-    function enterSite() {
-      document.getElementById('introModal').style.display = 'none';
-      document.getElementById('mainContent').style.display = 'block';
-      document.getElementById('bgMusic').play();
-    }
-  </script>
 </body>
 </html>
