@@ -11,11 +11,11 @@
   <style>
     :root {
       --main-bg: #fffaf7;
-      --accent-color: #f8d4da;
+      --accent-color: #ffe8ed;
       --text-color: #4b2e2e;
       --button-bg: #ffe0e9;
       --button-hover: #ffc9d6;
-      --highlight: #ffb3c6;
+      --highlight: #ffafcc;
     }
 
     * {
@@ -41,7 +41,7 @@
     /* Sidebar */
     aside {
       width: 220px;
-      background-color: #ffeef2;
+      background: linear-gradient(to bottom, #ffe8ed, #fff2f5);
       padding: 25px;
       position: fixed;
       top: 0;
@@ -52,7 +52,7 @@
     }
 
     aside h2 {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       margin-bottom: 8px;
       color: #a44;
     }
@@ -72,29 +72,26 @@
       color: #d4375e;
     }
 
-    .custom-box {
-      margin-top: 30px;
-      background: #fff5f8;
-      border-left: 6px solid var(--highlight);
-      padding: 15px;
+    .custom-tagline {
+      background: var(--highlight);
+      padding: 10px 15px;
       border-radius: 10px;
-      font-size: 0.95rem;
       font-weight: bold;
-      color: #c13b5d;
-      box-shadow: 0 4px 8px rgba(255, 180, 200, 0.3);
-      animation: glow 3s ease-in-out infinite;
       text-align: center;
+      margin-top: 30px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      transition: all 0.3s ease-in-out;
     }
 
-    @keyframes glow {
-      0%, 100% { box-shadow: 0 0 8px #ffc9d6; }
-      50% { box-shadow: 0 0 15px #ffa7ba; }
+    .custom-tagline:hover {
+      background: #fdaecb;
+      transform: scale(1.03);
     }
 
     /* Header */
     header {
       margin-left: 220px;
-      padding: 20px 30px;
+      padding: 20px;
       background-color: var(--button-bg);
       display: flex;
       justify-content: space-between;
@@ -116,6 +113,7 @@
       align-items: center;
       font-weight: bold;
       transition: background 0.3s ease;
+      border: none;
     }
 
     .cart-btn:hover {
@@ -128,21 +126,16 @@
       margin-right: 6px;
     }
 
-    /* Main */
+    /* Main content */
     main {
       margin-left: 220px;
       padding: 30px;
       flex: 1;
     }
 
-    .main-title {
+    #category-title {
       font-size: 2rem;
       margin-bottom: 20px;
-    }
-
-    .highlight-title {
-      color: #d96a8b;
-      font-family: 'Pacifico', cursive;
     }
 
     .product-grid {
@@ -157,7 +150,6 @@
       border-radius: 16px;
       box-shadow: 0 6px 12px rgba(0,0,0,0.05);
       text-align: center;
-      display: none;
     }
 
     .product-card img {
@@ -241,129 +233,155 @@
 
       header, main {
         margin-left: 0;
+        padding: 20px;
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
 
-<!-- Sidebar -->
-<aside>
-  <nav>
-    <h2>Crochet</h2>
-    <ul>
-      <li><a onclick="filterProducts('flowers')">Flowers</a></li>
-      <li><a onclick="filterProducts('tshirts')">T-shirts</a></li>
-      <li><a onclick="filterProducts('toys')">Soft Toys</a></li>
-    </ul>
-    <h2>Paintings</h2>
-    <ul>
-      <li><a onclick="filterProducts('paintings')">All Paintings</a></li>
-    </ul>
-    <h2>Others</h2>
-    <ul>
-      <li><a onclick="filterProducts('moon')">Moon</a></li>
-      <li><a onclick="filterProducts('miniature')">Miniature Arts</a></li>
-    </ul>
-    <div class="custom-box">
-      ✨ Custom Made Just for You ✨  
-      <br>
-      <small>Click to tell us your dream idea 💌</small>
-    </div>
-  </nav>
-</aside>
+  <!-- Sidebar -->
+  <aside>
+    <nav>
+      <h2>Crochet</h2>
+      <ul>
+        <li><a onclick="filterCategory('Flowers')">Flowers</a></li>
+        <li><a onclick="filterCategory('T-shirts')">T-shirts</a></li>
+        <li><a onclick="filterCategory('Soft Toys')">Soft Toys</a></li>
+      </ul>
+      <h2>Paintings</h2>
+      <ul>
+        <li><a onclick="filterCategory('Paintings')">All Paintings</a></li>
+      </ul>
+      <h2>Others</h2>
+      <ul>
+        <li><a onclick="filterCategory('Moon')">Moon</a></li>
+        <li><a onclick="filterCategory('Miniature Arts')">Miniature Arts</a></li>
+      </ul>
 
-<!-- Header -->
-<header>
-  <a href="index.html">bynishtha</a>
-  <button class="cart-btn">
-    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 7H19m-12 0a1 1 0 001 1h10a1 1 0 001-1m-12 0h12"/>
-    </svg>
-    Cart
-  </button>
-</header>
-
-<!-- Main Content -->
-<main>
-  <h2 class="main-title"><span id="sectionTitle">Crochet</span> <span class="highlight-title">bynishtha</span></h2>
-
-  <section class="product-grid">
-    <div class="product-card flowers">
-      <img src="images/flower.png" alt="Flower Crochet">
-      <h3>Flower Crochet</h3>
-      <p>₹250</p>
-      <div class="quantity">
-        <button onclick="decrease(this)">-</button>
-        <span>1</span>
-        <button onclick="increase(this)">+</button>
+      <div class="custom-tagline" onclick="alert('Open Custom Order Modal')">
+        ✨ Custom Made Just for You ✨
       </div>
-      <button class="add-btn">Add to Cart</button>
-    </div>
+    </nav>
+  </aside>
 
-    <div class="product-card tshirts">
-      <img src="images/tshirt.png" alt="Crochet T-shirt">
-      <h3>Crochet T-shirt</h3>
-      <p>₹450</p>
-      <div class="quantity">
-        <button onclick="decrease(this)">-</button>
-        <span>1</span>
-        <button onclick="increase(this)">+</button>
+  <!-- Header -->
+  <header>
+    <a href="index.html">bynishtha</a>
+    <button class="cart-btn">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 7H19m-12 0a1 1 0 001 1h10a1 1 0 001-1m-12 0h12"/>
+      </svg>
+      Cart
+    </button>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <h2 id="category-title">Crochet <span style="color: #d96a8b; font-family: 'Pacifico', cursive;">bynishtha</span></h2>
+
+    <section class="product-grid" id="product-list">
+      <div class="product-card" data-category="Flowers">
+        <img src="images/flower.png" alt="Flower Crochet">
+        <h3>Flower Crochet</h3>
+        <p>₹250</p>
+        <div class="quantity">
+          <button onclick="decrease(this)">-</button>
+          <span>1</span>
+          <button onclick="increase(this)">+</button>
+        </div>
+        <button class="add-btn">Add to Cart</button>
       </div>
-      <button class="add-btn">Add to Cart</button>
-    </div>
 
-    <div class="product-card toys">
-      <img src="images/toy.png" alt="Soft Toy">
-      <h3>Soft Crochet Bunny</h3>
-      <p>₹350</p>
-      <div class="quantity">
-        <button onclick="decrease(this)">-</button>
-        <span>1</span>
-        <button onclick="increase(this)">+</button>
+      <div class="product-card" data-category="T-shirts">
+        <img src="images/tshirt.png" alt="T-shirt">
+        <h3>Handmade T-shirt</h3>
+        <p>₹500</p>
+        <div class="quantity">
+          <button onclick="decrease(this)">-</button>
+          <span>1</span>
+          <button onclick="increase(this)">+</button>
+        </div>
+        <button class="add-btn">Add to Cart</button>
       </div>
-      <button class="add-btn">Add to Cart</button>
+
+      <!-- Add more cards as needed -->
+    </section>
+
+    <div class="view-cart">
+      <button>View Cart</button>
     </div>
+  </main>
 
-    <!-- Add more cards with respective classes (e.g., paintings, moon, miniature) -->
-  </section>
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 bynishtha — Made with 🧡 by Nishtha & Vanit</p>
+  </footer>
 
-  <div class="view-cart">
-    <button>View Cart</button>
-  </div>
-</main>
+  <!-- JS Script -->
+  <script>
+    function increase(btn) {
+      const span = btn.parentElement.querySelector('span');
+      let count = parseInt(span.innerText);
+      span.innerText = count + 1;
+    }
 
-<!-- Footer -->
-<footer>
-  <p>&copy; 2025 bynishtha — Made with 🧡 by Nishtha & Vanit</p>
-</footer>
+    function decrease(btn) {
+      const span = btn.parentElement.querySelector('span');
+      let count = parseInt(span.innerText);
+      if (count > 1) {
+        span.innerText = count - 1;
+      }
+    }
 
-<!-- JS Logic -->
-<script>
-  function increase(btn) {
-    let span = btn.parentElement.querySelector('span');
-    span.innerText = parseInt(span.innerText) + 1;
-  }
+    function filterCategory(category) {
+      const cards = document.querySelectorAll('.product-card');
+      const title = document.getElementById('category-title');
+      title.innerHTML = `${category} <span style="color: #d96a8b; font-family: 'Pacifico', cursive;">bynishtha</span>`;
 
-  function decrease(btn) {
-    let span = btn.parentElement.querySelector('span');
-    let count = parseInt(span.innerText);
-    if (count > 1) span.innerText = count - 1;
-  }
+      cards.forEach(card => {
+        if (card.dataset.category === category || category === 'All Paintings') {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
 
-  function filterProducts(category) {
-    document.querySelectorAll('.product-card').forEach(card => {
-      card.style.display = card.classList.contains(category) ? 'block' : 'none';
+    document.addEventListener("DOMContentLoaded", function () {
+      const addButtons = document.querySelectorAll(".add-btn");
+
+      addButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const card = btn.closest(".product-card");
+          const title = card.querySelector("h3").innerText;
+          const price = parseFloat(card.querySelector("p").innerText.replace("₹", ""));
+          const quantity = parseInt(card.querySelector(".quantity span").innerText);
+          const id = title.toLowerCase().replace(/\s+/g, "-");
+
+          const newItem = { id, title, price, quantity };
+          let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+          const existing = cart.find(item => item.id === id);
+          if (existing) {
+            existing.quantity += quantity;
+          } else {
+            cart.push(newItem);
+          }
+
+          localStorage.setItem("cart", JSON.stringify(cart));
+          alert(`${title} added to cart!`);
+        });
+      });
+
+      document.querySelector(".view-cart button").addEventListener("click", () => {
+        window.location.href = "cart.html";
+      });
     });
-    const label = category.charAt(0).toUpperCase() + category.slice(1);
-    document.getElementById('sectionTitle').innerText = label;
-  }
-
-  // Show all by default
-  window.onload = () => {
-    document.querySelectorAll('.product-card').forEach(card => card.style.display = 'block');
-  };
-</script>
-
+  </script>
 </body>
 </html>
