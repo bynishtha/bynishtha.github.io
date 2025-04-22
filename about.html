@@ -1,239 +1,147 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>About the Artist | By Nishtha</title>  <!-- Fonts -->  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">  <style>
+  <title>About the Artist - By Nishtha</title>
+  <style>
+    :root {
+      --primary: #f8e8e0;
+      --accent: #d8b4a0;
+      --text: #4a3c31;
+      --bg: #fffaf7;
+      --highlight: #ffe2cc;
+    }
+
     body {
       margin: 0;
-      font-family: 'Quicksand', sans-serif;
-      background-color: #fffdfd;
-      scroll-behavior: smooth;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
     }
 
-    .logo {
-      font-family: 'Pacifico', cursive;
-      font-size: 48px;
-      color: #4B2E2E;
-      letter-spacing: 2px;
-      display: inline-block;
-    }
-
-    h1.hero-title {
-      font-family: 'Pacifico', cursive;
-      margin: 0;
-      color: #4B2E2E;
-      font-size: 10rem;
+    header {
+      background-color: var(--primary);
+      padding: 1rem;
       text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     }
 
-    @media (max-width: 1024px) {
-      h1.hero-title { font-size: 7rem; }
-    }
-    @media (max-width: 768px) {
-      h1.hero-title { font-size: 5rem; }
-    }
-    @media (max-width: 480px) {
-      h1.hero-title { font-size: 3.5rem; }
-    }
-
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background-color: #fff;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    .logo a {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: #4B2E2E !important;
-      text-decoration: none;
-    }
-
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 1rem;
-    }
-    .nav-links li a {
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-      padding: 10px 20px;
-      background-color: #fff0f5;
-      border-radius: 12px;
-      transition: color 0.3s;
-    }
-    .nav-links li a:hover {
-      color: #e57373;
+    header h1 {
+      font-size: 2rem;
+      margin: 0;
     }
 
     .hero {
-      height: 100vh;
-      background-color: #fef6f9;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .fade-in {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .artist-intro {
       text-align: center;
-      padding: 4rem 2rem;
-      background-color: #fff0f5;
-    }
-    .artist-photo {
-      width: 220px;
-      margin-bottom: 1rem;
-      border-radius: 10px;
-    }
-    .artist-intro h2 {
-      margin: 0.5rem 0;
-      font-size: 2rem;
-      color: #b74d5e;
-    }
-    .quote {
-      font-style: italic;
-      color: #555;
-    }
-    .description {
-      max-width: 600px;
-      margin: 1rem auto;
-      color: #666;
-      font-size: 0.95rem;
-      line-height: 1.6;
+      padding: 2rem 1rem;
     }
 
-    .gallery, .journey {
-      padding: 2rem;
-      background-color: #fff;
-      text-align: center;
-    }
-    .gallery h3, .journey h3 {
+    .hero h2 {
       font-size: 1.8rem;
-      margin-bottom: 1rem;
-      color: #d76d77;
-    }
-    .gallery-container, .journey-gallery {
-      display: flex;
-      overflow-x: auto;
-      gap: 1rem;
-      padding: 1rem 0;
-    }
-    .gallery-container img, .journey-gallery img {
-      height: 200px;
-      width: 200px;
-      object-fit: cover;
-      flex-shrink: 0;
-      border-radius: 10px;
+      margin-bottom: 0.5rem;
     }
 
-    .journey p {
-      max-width: 600px;
-      margin: 0 auto 1rem;
+    .hero p {
       font-size: 1rem;
-      color: #444;
+      color: #6a5f53;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
-    .outro {
-      background-color: #fef6f9;
-      padding: 2rem;
-      text-align: center;
-      font-weight: bold;
-      color: #d76d77;
+    .artist-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      gap: 1.5rem;
     }
 
-    .footer {
-      background-color: #333;
-      color: #fff;
-      padding: 2rem;
+    .artist-photo {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background-color: var(--highlight);
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .artist-description {
+      max-width: 500px;
+      font-size: 1rem;
+      line-height: 1.6;
+      background-color: var(--primary);
+      padding: 1.5rem;
+      border-radius: 1rem;
+    }
+
+    .gallery {
+      padding: 2rem 1rem;
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    footer {
       text-align: center;
-    }
-    .footer p {
-      margin: 0.5rem 0;
-    }
-    .footer a {
-      color: #fff;
-      margin: 0 0.3rem;
-      text-decoration: none;
-    }
-    .footer a:hover {
-      text-decoration: underline;
+      background-color: var(--primary);
+      padding: 1rem;
+      font-size: 0.9rem;
+      margin-top: 2rem;
     }
 
     @media (max-width: 768px) {
-      .gallery-container img, .journey-gallery img {
-        height: 150px;
-        width: 150px;
-      }
-      .artist-photo {
-        width: 180px;
-      }
-      .nav-links {
+      .artist-section {
         flex-direction: column;
-        align-items: center;
-        gap: 0.5rem;
+      }
+
+      .artist-description {
+        text-align: center;
       }
     }
-  </style></head>
-<body>  <nav class="navbar">
-    <div class="logo"><a href="index.html">bynishtha</a></div>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="shop.html">Shop</a></li>
-    </ul>
-  </nav>  <section class="hero fade-in">
-    <header>
-      <h1 class="hero-title">bynishtha</h1>
-    </header>
-  </section>  <section class="artist-intro fade-in">
-    <img src="images/nishtha-cover.webp" alt="Nishtha Kadiwala" class="artist-photo">
-    <h2>Nishtha Kadiwala</h2>
-    <p class="quote">"Crafting warmth and love, one stitch at a time."</p>
-    <p class="description">
-      Nishtha is a passionate crochet artist who pours her heart into every thread and loop. Inspired by cozy colors, soft textures, and a love for handmade beauty, her creations are more than just products—they’re heartfelt expressions of comfort and creativity.
-    </p>
-  </section>  <section class="gallery fade-in">
-    <h3>Her Works</h3>
-    <div class="gallery-container">
-      <img src="images/1.png" alt="Work 1">
-      <img src="images/2.png" alt="Work 2">
-      <img src="images/3.png" alt="Work 3">
-      <img src="images/4.png" alt="Work 4">
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>By Nishtha</h1>
+  </header>
+
+  <section class="hero">
+    <h2>Meet the Artist</h2>
+    <p>Nishtha, lovingly known as Bubu, turns yarn into magic with each crochet creation. Every item is handmade with love, warmth, and creativity.</p>
+  </section>
+
+  <section class="artist-section">
+    <div class="artist-photo" style="background-image: url('images/bubu.jpg');"></div>
+    <div class="artist-description">
+      <p>
+        Nishtha's passion for crocheting began with a simple hook and a heart full of dreams. Inspired by cozy aesthetics, anime, and all things cute, she brings her imagination to life through handcrafted pieces.
+        <br><br>
+        Whether it’s a tiny flower, a cuddly Totoro, or a custom plushie, each item carries her love and care—ready to brighten someone's day.
+      </p>
     </div>
-  </section>  <section class="journey fade-in">
-    <h3>Her Journey</h3>
-    <p>From humble beginnings to intricate masterpieces, explore Nishtha's crochet journey through memories and milestones.</p>
-    <div class="journey-gallery">
-      <img src="images/5.png" alt="Journey 1">
-      <img src="images/6.png" alt="Journey 2">
-      <img src="images/7.png" alt="Journey 3">
-      <img src="images/8.png" alt="Journey 4">
-    </div>
-  </section>  <section class="outro">
-    Thank you for being part of Nishtha's creative story. Every stitch tells a tale.
-  </section>  <footer class="footer">
-    <p>&copy; 2025 By Nishtha. All rights reserved.</p>
-    <p>
-      <a href="https://www.instagram.com/">Instagram</a> |
-      <a href="mailto:nishtha@example.com">Email</a>
-    </p>
+  </section>
+
+  <section class="gallery">
+    <img src="images/product1.jpg" alt="Crochet Flower">
+    <img src="images/product2.jpg" alt="Totoro Keychain">
+    <img src="images/product3.jpg" alt="Custom Plushie">
+    <img src="images/product4.jpg" alt="Mini Bag">
+  </section>
+
+  <footer>
+    © 2025 By Nishtha. All rights reserved.
   </footer>
+
 </body>
 </html>
