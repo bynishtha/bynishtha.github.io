@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Shop | bynishtha</title>
-
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
 
   <style>
@@ -27,8 +25,6 @@
       margin: 0;
       background-color: var(--main-bg);
       color: var(--text-color);
-      display: flex;
-      flex-direction: column;
       min-height: 100vh;
     }
 
@@ -49,6 +45,11 @@
       left: 0;
       overflow-y: auto;
       box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+    }
+
+    aside.hidden {
+      transform: translateX(-100%);
     }
 
     aside h2 {
@@ -90,19 +91,20 @@
 
     /* Header */
     header {
-      margin-left: 220px;
-      padding: 20px;
-      background-color: var(--button-bg);
       display: flex;
       justify-content: space-between;
       align-items: center;
+      background-color: var(--button-bg);
       border-bottom: 1px dashed #fbb;
+      padding: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
 
-    header a {
+    .logo {
       font-family: 'Pacifico', cursive;
       font-size: 1.8rem;
-      color: var(--text-color);
     }
 
     .cart-btn {
@@ -112,7 +114,6 @@
       display: flex;
       align-items: center;
       font-weight: bold;
-      transition: background 0.3s ease;
       border: none;
     }
 
@@ -126,11 +127,16 @@
       margin-right: 6px;
     }
 
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
     /* Main content */
     main {
       margin-left: 220px;
       padding: 30px;
-      flex: 1;
     }
 
     #category-title {
@@ -226,14 +232,28 @@
       padding-bottom: 30px;
     }
 
+    /* Responsive Styles */
     @media (max-width: 768px) {
-      aside {
-        display: none;
+      .menu-toggle {
+        display: block;
       }
 
-      header, main {
+      aside {
+        position: fixed;
+        width: 200px;
+        height: 100%;
+        z-index: 100;
+        background-color: #fff2f5;
+        transform: translateX(-100%);
+      }
+
+      main {
         margin-left: 0;
         padding: 20px;
+      }
+
+      header {
+        padding: 10px 20px;
       }
 
       .product-grid {
@@ -245,7 +265,7 @@
 <body>
 
   <!-- Sidebar -->
-  <aside>
+  <aside id="sidebar" class="hidden">
     <nav>
       <h2>Crochet</h2>
       <ul>
@@ -262,7 +282,6 @@
         <li><a onclick="filterCategory('Moon')">Moon</a></li>
         <li><a onclick="filterCategory('Miniature Arts')">Miniature Arts</a></li>
       </ul>
-
       <div class="custom-tagline" onclick="alert('Open Custom Order Modal')">
         ✨ Custom Made Just for You ✨
       </div>
@@ -271,14 +290,16 @@
 
   <!-- Header -->
   <header>
-    <a href="index.html">bynishtha</a>
+    <span class="menu-toggle" onclick="toggleSidebar()">☰</span>
+    <a href="index.html" class="logo">bynishtha</a>
     <a href="cart.html">
-    <button class="cart-btn">
-      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 7H19m-12 0a1 1 0 001 1h10a1 1 0 001-1m-12 0h12"/>
-      </svg>
-      Cart
-    </button></a>
+      <button class="cart-btn">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 7H19m-12 0a1 1 0 001 1h10a1 1 0 001-1m-12 0h12"/>
+        </svg>
+        Cart
+      </button>
+    </a>
   </header>
 
   <!-- Main Content -->
@@ -309,8 +330,6 @@
         </div>
         <button class="add-btn">Add to Cart</button>
       </div>
-
-      <!-- Add more cards as needed -->
     </section>
 
     <div class="view-cart">
@@ -318,71 +337,36 @@
     </div>
   </main>
 
-  <!-- Footer -->
   <footer>
     <p>&copy; 2025 bynishtha — Made with 🧡 by Nishtha & Vanit</p>
   </footer>
 
-  <!-- JS Script -->
   <script>
-    function increase(btn) {
-      const span = btn.parentElement.querySelector('span');
-      let count = parseInt(span.innerText);
-      span.innerText = count + 1;
-    }
-
-    function decrease(btn) {
-      const span = btn.parentElement.querySelector('span');
-      let count = parseInt(span.innerText);
-      if (count > 1) {
-        span.innerText = count - 1;
-      }
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("hidden");
     }
 
     function filterCategory(category) {
-      const cards = document.querySelectorAll('.product-card');
-      const title = document.getElementById('category-title');
-      title.innerHTML = `${category} <span style="color: #d96a8b; font-family: 'Pacifico', cursive;">bynishtha</span>`;
-
+      document.getElementById("category-title").textContent = category + " bynishtha";
+      const cards = document.querySelectorAll(".product-card");
       cards.forEach(card => {
-        if (card.dataset.category === category || category === 'All Paintings') {
-          card.style.display = "block";
-        } else {
-          card.style.display = "none";
-        }
+        card.style.display = card.dataset.category === category ? "block" : "none";
       });
     }
 
-    document.addEventListener("DOMContentLoaded", function () {
-      const addButtons = document.querySelectorAll(".add-btn");
+    function increase(button) {
+      const span = button.previousElementSibling;
+      span.textContent = parseInt(span.textContent) + 1;
+    }
 
-      addButtons.forEach(btn => {
-        btn.addEventListener("click", () => {
-          const card = btn.closest(".product-card");
-          const title = card.querySelector("h3").innerText;
-          const price = parseFloat(card.querySelector("p").innerText.replace("₹", ""));
-          const quantity = parseInt(card.querySelector(".quantity span").innerText);
-          const id = title.toLowerCase().replace(/\s+/g, "-");
-
-          const newItem = { id, title, price, quantity };
-          let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-          const existing = cart.find(item => item.id === id);
-          if (existing) {
-            existing.quantity += quantity;
-          } else {
-            cart.push(newItem);
-          }
-
-          localStorage.setItem("cart", JSON.stringify(cart));
-          alert(`${title} added to cart!`);
-        });
-      });
-
-      document.querySelector(".view-cart button").addEventListener("click", () => {
-        window.location.href = "cart.html";
-      });
-    });
+    function decrease(button) {
+      const span = button.nextElementSibling;
+      if (parseInt(span.textContent) > 1) {
+        span.textContent = parseInt(span.textContent) - 1;
+      }
+    }
   </script>
+
 </body>
 </html>
