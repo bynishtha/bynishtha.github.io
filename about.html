@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About the Artist | By Nishtha</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+
+  <style>
+    /* Basic Styles */
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      background-color: #fffdfd;
+      scroll-behavior: smooth;
+    }
+
+    /* Logo Font */
+    .logo {
+      font-family: 'Pacifico', cursive;
+      font-size: 48px;
+      color: #4B2E2E;
+      letter-spacing: 2px;
+      display: inline-block;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 12.3rem;
+      margin: 0;
+      color: #4B2E2E;
+    }
+
+    header a {
+      text-decoration: none;
+      color: #4B2E2E;
+    }
+
+    header a:hover {
+      color: #6A3D3D;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo a {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #d76d77;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 30px;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      transition: color 0.3s;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      background-color: #fff0f5;
+    }
+
+    .nav-links li a:hover {
+      color: #e57373;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      background-color: #fef6f9;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .scroll-down {
+      margin-top: 2rem;
+      font-size: 2rem;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(10px); }
+    }
+
+    /* Artist Intro */
+    .artist-intro {
+      text-align: center;
+      padding: 4rem 2rem;
+      background-color: #fff0f5;
+    }
+
+    .artist-photo {
+      width: 220px;
+      margin-bottom: 1rem;
+      border-radius: 10px;
+    }
+
+    .artist-intro h2 {
+      margin: 0.5rem 0;
+      font-size: 2rem;
+      color: #b74d5e;
+    }
+
+    .quote {
+      font-style: italic;
+      color: #555;
+    }
+
+    .description {
+      max-width: 600px;
+      margin: 1rem auto;
+      color: #666;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Gallery & Journey */
+    .gallery, .journey {
+      padding: 2rem;
+      background-color: #fff;
+      text-align: center;
+    }
+
+    .gallery h3, .journey h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #d76d77;
+    }
+
+    .gallery-container, .journey-gallery {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+
+    .gallery-container img, .journey-gallery img {
+      height: 200px;
+      width: 200px;
+      object-fit: cover;
+      flex-shrink: 0;
+      border-radius: 10px;
+    }
+
+    .journey p {
+      max-width: 600px;
+      margin: 0 auto 1rem;
+      font-size: 1rem;
+      color: #444;
+    }
+
+    /* Outro */
+    .outro {
+      background-color: #fef6f9;
+      padding: 2rem;
+      text-align: center;
+      font-weight: bold;
+      color: #d76d77;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: #333;
+      color: #fff;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .footer p {
+      margin: 0.5rem 0;
+    }
+
+    .footer a {
+      color: #fff;
+      margin: 0 0.3rem;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Add inside the <style> tag or your CSS file */
+
+h1.hero-title {
+  font-family: 'Pacifico', cursive;
+  margin: 0;
+  color: #4B2E2E;
+  font-size: 10rem; /* Base for large screens */
+  text-align: center;
+}
+
+/* Responsive scaling */
+@media (max-width: 1024px) {
+  h1.hero-title {
+    font-size: 7rem;
+  }
+}
+
+@media (max-width: 768px) {
+  h1.hero-title {
+    font-size: 5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1.hero-title {
+    font-size: 3.5rem;
+  }
+}
+
+/* Navbar logo color fix */
+.logo a {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #4B2E2E !important; /* Match hero title */
+  text-decoration: none;
+}
+
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .gallery-container img, .journey-gallery img {
+        height: 150px;
+        width: 150px;
+      }
+      .artist-photo {
+        width: 180px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo"><a href="index.html">bynishtha</a></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="shop.html">Shop</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+<section class="hero fade-in">
+    <header>
+      <h1 class="hero-title">bynishtha</h1>
+    </header>
+  </section>
+  
+
+  <!-- Artist Intro -->
+  <section class="artist-intro fade-in">
+    <img src="images/nishtha-cover.webp" alt="Nishtha Kadiwala" class="artist-photo">
+    <h2>Nishtha Kadiwala</h2>
+    <p class="quote">"Crafting warmth and love, one stitch at a time."</p>
+    <p class="description">
+      Nishtha is a passionate crochet artist who pours her heart into every thread and loop. Inspired by cozy colors, soft textures, and a love for handmade beauty, her creations are more than just products—they’re heartfelt expressions of comfort and creativity.
+    </p>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="gallery fade-in">
+    <h3>Her Works</h3>
+    <div class="gallery-container">
+      <img src="images/1.png" alt="Work 1">
+      <img src="images/2.png" alt="Work 2">
+      <img src="images/3.png" alt="Work 3">
+      <img src="images/4.png" alt="Work 4">
+      <img src="images/1.png" alt="Work 1">
+      <img src="images/2.png" alt="Work 2">
+      <img src="images/3.png" alt="Work 3">
+      <img src="images/4.png" alt="Work 4">
+      <img src="images/1.png" alt="Work 1">
+      <img src="images/2.png" alt="Work 2">
+      <img src="images/3.png" alt="Work 3">
+      <img src="images/4.png" alt="Work 4">
+    </div>
+  </section>
+
+  <!-- Journey Section -->
+  <section class="journey fade-in">
+    <h3>Her Journey</h3>
+    <p>From humble beginnings to intricate masterpieces, explore Nishtha's crochet journey through memories and milestones.</p>
+    <div class="journey-gallery">
+      <img src="images/5.png" alt="Journey 1">
+      <img src="images/6.png" alt="Journey 2">
+      <img src="images/7.png" alt="Journey 3">
+      <img src="images/8.png" alt="Journey 4">
+      
+      <img src="images/5.png" alt="Journey 1">
+      <img src="images/6.png" alt="Journey 2">
+      <img src="images/7.png" alt="Journey 3">
+      <img src="images/8.png" alt="Journey 4">
+      
+      <img src="images/5.png" alt="Journey 1">
+      <img src="images/6.png" alt="Journey 2">
+      <img src="images/7.png" alt="Journey 3">
+      <img src="images/8.png" alt="Journey 4">
+    </div>
+  </section>
+
+  <!-- Outro -->
+  <section class="outro">
+    Thank you for supporting handmade art and the story behind every stitch.
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p><strong><a href="index.html">bynishtha</a></strong></p>
+    <p>Phone: +91-9825399984</p>
+    <p>Email: <a href="mailto:bynishtha@gmail.com">bynishtha@gmail.com</a></p>
+    <p>
+      Contact:
+      <a href="mailto:bynishtha@gmail.com">Email</a> |
+      <a href="https://wa.me/919825399984">WhatsApp</a> |
+      <a href="https://instagram.com/bynishtha">Instagram</a>
+    </p>
+  </footer>
+
+  <script>
+    // Fade-in on scroll
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -20px 0px"
+    };
+
+    const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        appearOnScroll.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
+  </script>
+</body>
+</html>
