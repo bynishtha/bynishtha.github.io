@@ -3,386 +3,313 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Shop | bynishtha</title>
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
-
+  <title>By Nishtha - Shop</title>
   <style>
     :root {
-      --main-bg: #fffaf7;
-      --accent-color: #ffe8ed;
-      --text-color: #4b2e2e;
-      --button-bg: #ffe0e9;
-      --button-hover: #ffc9d6;
-      --highlight: #ffafcc;
+      --bg-color: #fff6f0;
+      --primary-color: #f2c8c8;
+      --accent-color: #ffd8be;
+      --button-bg: #ffb6b9;
+      --button-text: #fff;
+      --border-color: #ffcad4;
+      --text-color: #444;
     }
 
     * {
-      font-family: 'Playfair Display', serif;
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Comic Sans MS', cursive;
     }
 
     body {
-      margin: 0;
-      background-color: var(--main-bg);
+      background-color: var(--bg-color);
       color: var(--text-color);
       display: flex;
       flex-direction: column;
       min-height: 100vh;
     }
 
-    a {
-      text-decoration: none;
-      color: var(--text-color);
+    header {
+      background-color: var(--accent-color);
+      padding: 1rem;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mobile-toggle {
+      display: none;
+      background-color: var(--button-bg);
+      border: none;
+      padding: 8px 12px;
+      font-size: 1.2rem;
+      border-radius: 8px;
+      margin-left: 15px;
       cursor: pointer;
     }
 
-    /* Sidebar */
+    main {
+      display: flex;
+      flex: 1;
+    }
+
     aside {
       width: 220px;
-      background: linear-gradient(to bottom, #ffe8ed, #fff2f5);
-      padding: 25px;
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      overflow-y: auto;
-      box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+      background-color: var(--primary-color);
+      padding: 1rem;
+      border-right: 2px dotted var(--border-color);
+      transition: left 0.3s ease;
     }
 
     aside h2 {
-      font-size: 1.1rem;
-      margin-bottom: 8px;
-      color: #a44;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
     }
 
-    aside ul {
-      list-style: none;
-      padding-left: 10px;
-      margin-bottom: 20px;
+    .categories button {
+      background: none;
+      border: none;
+      display: block;
+      padding: 0.5rem 0;
+      font-size: 1rem;
+      text-align: left;
+      cursor: pointer;
+      color: var(--text-color);
+      transition: transform 0.2s ease;
     }
 
-    aside li {
-      font-size: 0.95rem;
-      margin: 4px 0;
-    }
-
-    aside a:hover {
-      color: #d4375e;
-    }
-
-    .custom-tagline {
-      background: var(--highlight);
-      padding: 10px 15px;
-      border-radius: 10px;
+    .categories button:hover {
+      transform: translateX(5px);
       font-weight: bold;
-      text-align: center;
-      margin-top: 30px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-      transition: all 0.3s ease-in-out;
     }
 
-    .custom-tagline:hover {
-      background: #fdaecb;
+    .tagline {
+      background-color: var(--accent-color);
+      padding: 1rem;
+      font-size: 1.2rem;
+      text-align: center;
+      font-style: italic;
+      border-top: 2px dotted var(--border-color);
+      border-bottom: 2px dotted var(--border-color);
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+
+    section {
+      flex: 1;
+      padding: 1rem;
+    }
+
+    h2#category-title {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .product {
+      background-color: #fff;
+      border: 2px dotted var(--border-color);
+      padding: 1rem;
+      width: calc(33.333% - 1rem);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      border-radius: 10px;
+      transition: transform 0.2s ease;
+    }
+
+    .product:hover {
       transform: scale(1.03);
     }
 
-    /* Header */
-    header {
-      margin-left: 220px;
-      padding: 20px;
-      background-color: var(--button-bg);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px dashed #fbb;
+    .product h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
     }
 
-    header a {
-      font-family: 'Pacifico', cursive;
-      font-size: 1.8rem;
-      color: var(--text-color);
+    .product p {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .product button {
+      background-color: var(--button-bg);
+      color: var(--button-text);
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.2s ease;
+    }
+
+    .product button:hover {
+      background-color: #ff9aa2;
     }
 
     .cart-btn {
-      background-color: var(--accent-color);
-      padding: 8px 16px;
-      border-radius: 12px;
+      margin-left: auto;
+      background-color: var(--button-bg);
+      border: none;
+      padding: 0.6rem 1rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      color: var(--button-text);
+      font-weight: bold;
       display: flex;
       align-items: center;
-      font-weight: bold;
-      transition: background 0.3s ease;
-      border: none;
-    }
-
-    .cart-btn:hover {
-      background-color: var(--button-hover);
+      gap: 0.4rem;
     }
 
     .cart-btn svg {
       width: 20px;
       height: 20px;
-      margin-right: 6px;
-    }
-
-    /* Main content */
-    main {
-      margin-left: 220px;
-      padding: 30px;
-      flex: 1;
-    }
-
-    #category-title {
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 30px;
-    }
-
-    .product-card {
-      background: white;
-      padding: 16px;
-      border-radius: 16px;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.05);
-      text-align: center;
-    }
-
-    .product-card img {
-      max-width: 100%;
-      border-radius: 12px;
-      margin-bottom: 10px;
-    }
-
-    .product-card h3 {
-      font-size: 1.1rem;
-      margin: 5px 0;
-    }
-
-    .product-card p {
-      color: #c55572;
-      font-weight: bold;
-    }
-
-    .quantity {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    .quantity button {
-      padding: 4px 10px;
-      border-radius: 6px;
-      border: none;
-      background-color: var(--button-bg);
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .add-btn {
-      margin-top: 10px;
-      background-color: var(--accent-color);
-      border: none;
-      padding: 8px 20px;
-      border-radius: 10px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .add-btn:hover {
-      background-color: var(--button-hover);
-    }
-
-    .view-cart {
-      margin-top: 50px;
-      text-align: center;
-    }
-
-    .view-cart button {
-      background-color: var(--accent-color);
-      padding: 12px 30px;
-      border-radius: 16px;
-      font-weight: bold;
-      font-size: 1rem;
-      cursor: pointer;
-      border: none;
-    }
-
-    .view-cart button:hover {
-      background-color: var(--button-hover);
-    }
-
-    footer {
-      margin-top: 50px;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #888;
-      padding-bottom: 30px;
     }
 
     @media (max-width: 768px) {
       aside {
-        display: none;
+        position: fixed;
+        left: -250px;
+        top: 0;
+        bottom: 0;
+        width: 220px;
+        z-index: 1000;
+        background-color: var(--primary-color);
+        transition: left 0.3s ease;
       }
 
-      header, main {
-        margin-left: 0;
-        padding: 20px;
+      aside.open {
+        left: 0;
       }
 
-      .product-grid {
-        grid-template-columns: 1fr;
+      .mobile-toggle {
+        display: inline-block;
+      }
+
+      header {
+        justify-content: space-between;
+        padding: 1rem;
+      }
+
+      .cart-btn {
+        margin-left: auto;
+      }
+
+      .products {
+        flex-direction: column;
+      }
+
+      .product {
+        width: 100%;
       }
     }
   </style>
 </head>
 <body>
-
-  <!-- Sidebar -->
-  <aside>
-    <nav>
-      <h2>Crochet</h2>
-      <ul>
-        <li><a onclick="filterCategory('Flowers')">Flowers</a></li>
-        <li><a onclick="filterCategory('T-shirts')">T-shirts</a></li>
-        <li><a onclick="filterCategory('Soft Toys')">Soft Toys</a></li>
-      </ul>
-      <h2>Paintings</h2>
-      <ul>
-        <li><a onclick="filterCategory('Paintings')">All Paintings</a></li>
-      </ul>
-      <h2>Others</h2>
-      <ul>
-        <li><a onclick="filterCategory('Moon')">Moon</a></li>
-        <li><a onclick="filterCategory('Miniature Arts')">Miniature Arts</a></li>
-      </ul>
-
-      <div class="custom-tagline" onclick="alert('Open Custom Order Modal')">
-        ✨ Custom Made Just for You ✨
-      </div>
-    </nav>
-  </aside>
-
-  <!-- Header -->
   <header>
-    <a href="index.html">bynishtha</a>
+    <div style="display: flex; align-items: center;">
+      <button class="mobile-toggle" onclick="toggleSidebar()">☰</button>
+      <a href="index.html" style="text-decoration: none; color: inherit; margin-left: 10px;">bynishtha</a>
+    </div>
     <a href="cart.html">
-    <button class="cart-btn">
-      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 7H19m-12 0a1 1 0 001 1h10a1 1 0 001-1m-12 0h12"/>
-      </svg>
-      Cart
-    </button></a>
+      <button class="cart-btn">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 7H19m-12 0a1 1 0 001 1h10a1 1 0 001-1m-12 0h12"/>
+        </svg>
+        Cart
+      </button>
+    </a>
   </header>
 
-  <!-- Main Content -->
   <main>
-    <h2 id="category-title">Crochet <span style="color: #d96a8b; font-family: 'Pacifico', cursive;">bynishtha</span></h2>
-
-    <section class="product-grid" id="product-list">
-      <div class="product-card" data-category="Flowers">
-        <img src="images/flower.png" alt="Flower Crochet">
-        <h3>Flower Crochet</h3>
-        <p>₹250</p>
-        <div class="quantity">
-          <button onclick="decrease(this)">-</button>
-          <span>1</span>
-          <button onclick="increase(this)">+</button>
-        </div>
-        <button class="add-btn">Add to Cart</button>
+    <aside>
+      <h2>Categories</h2>
+      <div class="categories">
+        <button onclick="filterCategory('All')">All</button>
+        <button onclick="filterCategory('Flowers')">Flowers</button>
+        <button onclick="filterCategory('Animals')">Animals</button>
+        <button onclick="filterCategory('Keychains')">Keychains</button>
+        <button onclick="filterCategory('Wearables')">Wearables</button>
       </div>
 
-      <div class="product-card" data-category="T-shirts">
-        <img src="images/tshirt.png" alt="T-shirt">
-        <h3>Handmade T-shirt</h3>
-        <p>₹500</p>
-        <div class="quantity">
-          <button onclick="decrease(this)">-</button>
-          <span>1</span>
-          <button onclick="increase(this)">+</button>
-        </div>
-        <button class="add-btn">Add to Cart</button>
+      <div class="tagline" onclick="openCustomOrder()">
+        ✨ Custom Made Just for You ✨
       </div>
+    </aside>
 
-      <!-- Add more cards as needed -->
+    <section>
+      <h2 id="category-title">All Products</h2>
+      <div class="products" id="product-list">
+        <!-- Sample Products -->
+        <div class="product" data-category="Flowers">
+          <h3>Sunflower</h3>
+          <p>₹200</p>
+          <button onclick="addToCart('Sunflower', 200)">Add to Cart</button>
+        </div>
+        <div class="product" data-category="Animals">
+          <h3>Bunny</h3>
+          <p>₹300</p>
+          <button onclick="addToCart('Bunny', 300)">Add to Cart</button>
+        </div>
+        <div class="product" data-category="Keychains">
+          <h3>Heart Keychain</h3>
+          <p>₹150</p>
+          <button onclick="addToCart('Heart Keychain', 150)">Add to Cart</button>
+        </div>
+        <div class="product" data-category="Wearables">
+          <h3>Flower Hairpin</h3>
+          <p>₹180</p>
+          <button onclick="addToCart('Flower Hairpin', 180)">Add to Cart</button>
+        </div>
+        <!-- Add more products as needed -->
+      </div>
     </section>
-
-    <div class="view-cart">
-      <button>View Cart</button>
-    </div>
   </main>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 bynishtha — Made with 🧡 by Nishtha & Vanit</p>
-  </footer>
-
-  <!-- JS Script -->
   <script>
-    function increase(btn) {
-      const span = btn.parentElement.querySelector('span');
-      let count = parseInt(span.innerText);
-      span.innerText = count + 1;
-    }
-
-    function decrease(btn) {
-      const span = btn.parentElement.querySelector('span');
-      let count = parseInt(span.innerText);
-      if (count > 1) {
-        span.innerText = count - 1;
-      }
-    }
-
     function filterCategory(category) {
-      const cards = document.querySelectorAll('.product-card');
-      const title = document.getElementById('category-title');
-      title.innerHTML = `${category} <span style="color: #d96a8b; font-family: 'Pacifico', cursive;">bynishtha</span>`;
+      const title = document.getElementById("category-title");
+      const products = document.querySelectorAll(".product");
 
-      cards.forEach(card => {
-        if (card.dataset.category === category || category === 'All Paintings') {
-          card.style.display = "block";
+      title.textContent = category === "All" ? "All Products" : category;
+
+      products.forEach(p => {
+        if (category === "All" || p.dataset.category === category) {
+          p.style.display = "block";
         } else {
-          card.style.display = "none";
+          p.style.display = "none";
         }
       });
     }
 
-    document.addEventListener("DOMContentLoaded", function () {
-      const addButtons = document.querySelectorAll(".add-btn");
+    function addToCart(name, price) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const existing = cart.find(item => item.name === name);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ name, price, quantity: 1 });
+      }
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert(`${name} added to cart!`);
+    }
 
-      addButtons.forEach(btn => {
-        btn.addEventListener("click", () => {
-          const card = btn.closest(".product-card");
-          const title = card.querySelector("h3").innerText;
-          const price = parseFloat(card.querySelector("p").innerText.replace("₹", ""));
-          const quantity = parseInt(card.querySelector(".quantity span").innerText);
-          const id = title.toLowerCase().replace(/\s+/g, "-");
+    function toggleSidebar() {
+      document.querySelector("aside").classList.toggle("open");
+    }
 
-          const newItem = { id, title, price, quantity };
-          let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-          const existing = cart.find(item => item.id === id);
-          if (existing) {
-            existing.quantity += quantity;
-          } else {
-            cart.push(newItem);
-          }
-
-          localStorage.setItem("cart", JSON.stringify(cart));
-          alert(`${title} added to cart!`);
-        });
-      });
-
-      document.querySelector(".view-cart button").addEventListener("click", () => {
-        window.location.href = "cart.html";
-      });
-    });
+    function openCustomOrder() {
+      alert("Custom order form coming soon!");
+    }
   </script>
 </body>
 </html>
