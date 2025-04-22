@@ -1,79 +1,78 @@
 body.about-page {
-    background: #fff8f3;
-    font-family: 'Quicksand', sans-serif;
-    color: #555;
-    margin: 0;
-    padding: 0;
-  }
-  
-  header h1 {
-    text-align: center;
-    padding: 2rem 0 1rem;
-    font-size: 2.2rem;
-    color: #ff7c9c;
-  }
-  
-  .about-artist {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    gap: 2rem;
-    max-width: 1000px;
-    margin: auto;
-  }
-  
-  .artist-photo {
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    border: 4px dotted #ffc6d1;
-    object-fit: cover;
-  }
-  
-  .artist-bio {
-    max-width: 600px;
-  }
-  
-  .artist-bio h2 {
-    color: #ff92b2;
-    font-size: 1.6rem;
-    margin-bottom: 1rem;
-  }
-  
-  .artist-bio p {
-    line-height: 1.6;
-    margin-bottom: 1rem;
-    font-size: 1.05rem;
-  }
-  
-  .artist-note {
-    background-color: #ffe9f0;
-    padding: 2rem;
-    margin: 2rem auto;
-    max-width: 700px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 0 12px rgba(255, 140, 180, 0.15);
-  }
-  
-  .artist-note h3 {
-    color: #d96a92;
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-  }
-  
-  .artist-note p {
-    font-style: italic;
-    font-size: 1.05rem;
-    margin: 0.5rem 0;
-  }
-  
-  footer {
-    text-align: center;
-    padding: 1rem;
-    color: #aaa;
-    font-size: 0.9rem;
-  }
-  
+  background: #fff8f3;
+  font-family: 'Quicksand', sans-serif;
+  color: #555;
+  margin: 0;
+  padding: 0;
+}
+
+header h1 {
+  text-align: center;
+  padding: 2rem 0 1rem;
+  font-size: 2.2rem;
+  color: #ff7c9c;
+}
+
+.about-artist {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.artist-photo {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 4px dotted #ffc6d1;
+  object-fit: cover;
+}
+
+.artist-bio {
+  max-width: 600px;
+}
+
+.artist-bio h2 {
+  color: #ff92b2;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.artist-bio p {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+}
+
+.artist-note {
+  background-color: #ffe9f0;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 700px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 12px rgba(255, 140, 180, 0.15);
+}
+
+.artist-note h3 {
+  color: #d96a92;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.artist-note p {
+  font-style: italic;
+  font-size: 1.05rem;
+  margin: 0.5rem 0;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  color: #aaa;
+  font-size: 0.9rem;
+}
