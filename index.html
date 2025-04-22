@@ -15,12 +15,14 @@
   --text-color: #4b2e2e;
   --button-bg: #ffe0e9;
   --button-hover: #ffc9d6;
-  --popup-bg: rgba(255, 240, 240, 0.96);
+  --font-primary: 'Playfair Display', serif;
+  --font-secondary: 'Quicksand', sans-serif;
+  --font-logo: 'Pacifico', cursive;
 }
 
 * {
   box-sizing: border-box;
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-primary);
 }
 
 body {
@@ -28,10 +30,9 @@ body {
   background-color: var(--main-bg);
   color: var(--text-color);
   text-align: center;
-  font-size: 16px;
+  line-height: 1.6;
 }
 
-/* Header */
 header {
   padding: 2rem 1rem;
   background-color: #fff0f5;
@@ -39,18 +40,17 @@ header {
 }
 
 h1 {
-  font-family: 'Pacifico', cursive;
-  font-size: 2.8rem;
+  font-family: var(--font-logo);
+  font-size: 3rem;
   margin: 0;
 }
 
 h2 {
-  font-size: 1.9rem;
+  font-size: 2rem;
   color: #a44;
   margin: 1rem 0;
 }
 
-/* Main */
 main {
   display: flex;
   justify-content: center;
@@ -60,7 +60,7 @@ main {
 .container {
   background-color: #fff;
   padding: 2rem;
-  border-radius: 20px;
+  border-radius: 1rem;
   box-shadow: 0 10px 25px rgba(0,0,0,0.05);
   max-width: 600px;
   width: 100%;
@@ -69,10 +69,9 @@ main {
 .intro p {
   font-size: 1rem;
   margin-bottom: 1.5rem;
-  padding: 0 0.5rem;
+  padding: 0 1rem;
 }
 
-/* Navigation Links */
 .nav-links {
   margin-top: 2rem;
 }
@@ -80,13 +79,13 @@ main {
 .nav-links a {
   display: inline-block;
   margin: 0.5rem;
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 1.25rem;
   text-decoration: none;
   background-color: var(--button-bg);
-  border-radius: 12px;
+  border-radius: 0.75rem;
   color: #a44;
   font-weight: bold;
-  font-size: 0.9rem;
+  font-size: 1rem;
   transition: background 0.3s ease, transform 0.2s ease;
 }
 
@@ -95,44 +94,37 @@ main {
   transform: scale(1.05);
 }
 
-/* Footer */
 footer {
   margin: 2rem 1rem;
   font-size: 0.9rem;
   color: #888;
 }
 
-/* 🎉 New Birthday Popup */
+/* Birthday Popup */
 .popup {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: var(--popup-bg);
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 240, 240, 0.96);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 999;
-  animation: fadeIn 0.8s ease;
-  padding: 1.5rem;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
+  z-index: 10;
+  padding: 1rem;
 }
 
 .popup-content {
   background: #fff;
   padding: 2rem;
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  max-width: 90%;
+  border-radius: 1.25rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  max-width: 90vw;
   width: 100%;
   text-align: center;
   position: relative;
-  overflow: hidden;
+  animation: fadeIn 1s ease-in-out;
 }
 
 .popup-content .frame {
@@ -142,7 +134,7 @@ footer {
 }
 
 .popup-content img.photo {
-  border-radius: 1px;
+  border-radius: 0.25rem;
   width: 100%;
   max-width: 280px;
   height: auto;
@@ -153,74 +145,74 @@ footer {
 
 .popup-content img.flowers {
   position: absolute;
-  top: -25px;
-  left: -25px;
+  top: -20px;
+  left: -20px;
   width: 160px;
   height: 160px;
   z-index: 0;
-  opacity: 0.7;
 }
 
 .popup-content button {
-  margin-top: 1.5rem;
-  padding: 0.7rem 1.8rem;
+  margin-top: 1.25rem;
+  padding: 0.625rem 1.5rem;
   background: var(--accent-color);
   border: none;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   font-weight: bold;
   cursor: pointer;
-  font-family: 'Quicksand', sans-serif;
+  font-family: var(--font-secondary);
   font-size: 1rem;
-  box-shadow: 0 5px 15px rgba(255, 192, 203, 0.3);
-  transition: all 0.3s ease;
+  transition: background 0.3s ease;
 }
 
 .popup-content button:hover {
   background: var(--button-hover);
-  transform: translateY(-2px);
 }
 
-/* Responsive Settings */
-@media (max-width: 1024px) {
-  h1 { font-size: 2.4rem; }
-  h2 { font-size: 1.6rem; }
-  .container { padding: 1.8rem; }
+audio {
+  display: none;
 }
 
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-  h1 { font-size: 2.1rem; }
-  h2 { font-size: 1.4rem; }
+  h1 {
+    font-size: 2.5rem;
+  }
+  h2 {
+    font-size: 1.75rem;
+  }
   .nav-links a {
     display: block;
-    width: 90%;
-    margin: 0.6rem auto;
-    font-size: 0.95rem;
+    width: 80%;
+    margin: 0.5rem auto;
   }
   .popup-content img.flowers {
-    width: 120px;
-    height: 120px;
-    top: -20px;
-    left: -20px;
-  }
-  .container {
-    max-width: 95%;
-    margin: 0 auto;
+    width: 130px;
+    height: 130px;
+    top: -15px;
+    left: -15px;
   }
 }
 
 @media (max-width: 480px) {
-  body { font-size: 15px; }
-  h1 { font-size: 1.8rem; }
-  h2 { font-size: 1.2rem; }
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
   .popup-content {
-    padding: 1.2rem;
+    padding: 1.5rem;
   }
   .popup-content button {
-    width: 90%;
-    font-size: 0.95rem;
-  }
-  .popup-content img.photo {
-    max-width: 220px;
+    font-size: 0.9rem;
+    padding: 0.5rem 1.25rem;
   }
 }
 
@@ -272,11 +264,36 @@ footer {
     <p>&copy; 2025 bynishtha — made with 🧡 by Nishtha and Vanit</p>
   </footer>
 
-  <script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+<script>
+
     function closePopup() {
-      document.getElementById("popup").style.display = "none";
-    }
-  </script>
+          document.getElementById("popup").style.display = "none";
+        }
+    window.onload = function() {
+      const duration = 3 * 1000;
+      const end = Date.now() + duration;
+
+      (function frame() {
+        confetti({
+          particleCount: 3,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 },
+        });
+        confetti({
+          particleCount: 3,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 },
+        });
+
+        if (Date.now() < end) requestAnimationFrame(frame);
+      })();
+    };
+</script>
+
+
 
 </body>
 </html>
