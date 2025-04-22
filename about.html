@@ -1,211 +1,289 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - By Nishtha</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Quicksand', sans-serif;
-        }
-        body {
-            background-color: #fffafc;
-            color: #444;
-        }
-        nav {
-            background-color: #ffeaf4;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        nav .logo {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #ff80ab;
-        }
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 1.5rem;
-        }
-        nav ul li a {
-            text-decoration: none;
-            color: #444;
-            font-weight: 500;
-        }
-        nav ul li a:hover {
-            color: #ff4081;
-        }
-        .hero {
-            text-align: center;
-            padding: 4rem 2rem;
-            background: linear-gradient(to bottom, #fff0f5, #ffeef8);
-        }
-        .hero h1 {
-            font-size: 2.5rem;
-            color: #ff69b4;
-        }
-        .hero p {
-            margin-top: 1rem;
-            font-size: 1.1rem;
-        }
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-            padding: 2rem;
-        }
-        .gallery img {
-            width: 300px;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        .timeline {
-            position: relative;
-            max-width: 900px;
-            margin: 3rem auto;
-            padding: 2rem;
-        }
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 4px;
-            background-color: #ffb6c1;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -2px;
-        }
-        .container {
-            padding: 1rem 2rem;
-            position: relative;
-            background-color: inherit;
-            width: 50%;
-        }
-        .left {
-            left: 0;
-        }
-        .right {
-            left: 50%;
-        }
-        .left::before, .right::before {
-            content: " ";
-            height: 20px;
-            width: 20px;
-            position: absolute;
-            top: 15px;
-            background-color: white;
-            border: 4px solid #ff69b4;
-            border-radius: 50%;
-            z-index: 1;
-        }
-        .left::before {
-            right: -10px;
-        }
-        .right::before {
-            left: -10px;
-        }
-        .content {
-            padding: 1rem;
-            background-color: #fff0f5;
-            position: relative;
-            border-radius: 6px;
-        }
-        .video-section {
-            text-align: center;
-            margin: 2rem;
-        }
-        iframe {
-            border: none;
-            border-radius: 8px;
-            max-width: 90%;
-            height: 300px;
-        }
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background-color: #ffeaf4;
-            font-size: 1rem;
-            margin-top: 2rem;
-        }
-        @media (max-width: 768px) {
-            .container {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-            }
-            .timeline::after {
-                left: 31px;
-            }
-            .left::before, .right::before {
-                left: 15px;
-            }
-            .right {
-                left: 0%;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About - By Nishtha</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    body {
+      background-color: #fffafc;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    nav {
+      background-color: #ffeaf4;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #4b2e2e;
+      font-family: 'Pacifico', cursive;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #444;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #ff4081;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #444;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(to bottom, #fff0f5, #ffeef8);
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      color: #ff69b4;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    .floating-gallery {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 1rem;
+      padding: 2rem;
+    }
+
+    .floating-gallery img {
+      scroll-snap-align: center;
+      width: 250px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .floating-gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 2rem;
+    }
+
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 4px;
+      background-color: #ffb6c1;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -2px;
+    }
+
+    .container {
+      padding: 1rem 2rem;
+      position: relative;
+      background-color: inherit;
+      width: 50%;
+    }
+
+    .left {
+      left: 0;
+    }
+
+    .right {
+      left: 50%;
+    }
+
+    .left::before, .right::before {
+      content: " ";
+      height: 20px;
+      width: 20px;
+      position: absolute;
+      top: 15px;
+      background-color: white;
+      border: 4px solid #ff69b4;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .left::before {
+      right: -10px;
+    }
+
+    .right::before {
+      left: -10px;
+    }
+
+    .content {
+      padding: 1rem;
+      background-color: #fff0f5;
+      position: relative;
+      border-radius: 6px;
+    }
+
+    .video-section {
+      text-align: center;
+      margin: 3rem 0;
+    }
+
+    iframe {
+      border: none;
+      border-radius: 8px;
+      max-width: 90%;
+      height: 350px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: #ffeaf4;
+      font-size: 1rem;
+      margin-top: 2rem;
+    }
+
+    footer a {
+      color: #ff4081;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer a:hover {
+      color: #ff69b4;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #ffeaf4;
+        width: 100%;
+        flex-direction: column;
+        display: none;
+        padding: 1rem 2rem;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .container {
+        width: 100%;
+      }
+
+      .timeline::after {
+        left: 31px;
+      }
+
+      .left::before, .right::before {
+        left: 15px;
+      }
+
+      .right {
+        left: 0%;
+      }
+    }
+  </style>
 </head>
-<body>
-    <nav>
-        <div class="logo">By Nishtha</div>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="shop.html">Shop</a></li>
-            <li><a href="cart.html">Cart</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
+<body onload="AOS.init();">
 
-    <section class="hero">
-        <h1>Meet Nishtha ✨</h1>
-        <p>Our cozy crochet artist who turns threads into treasures 🌸</p>
-    </section>
+<nav>
+  <div class="logo">bynishtha</div>
+  <div class="menu-toggle" onclick="toggleMenu()">
+    <i class="fas fa-bars"></i>
+  </div>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="cart.html">Cart</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
 
-    <section class="gallery">
-        <img src="https://via.placeholder.com/300x200.png?text=Cute+Crochet+1" alt="Crochet 1">
-        <img src="https://via.placeholder.com/300x200.png?text=Cute+Crochet+2" alt="Crochet 2">
-        <img src="https://via.placeholder.com/300x200.png?text=Cute+Crochet+3" alt="Crochet 3">
-    </section>
+<section class="hero" data-aos="fade-up">
+  <h1>Meet Nishtha ✨</h1>
+  <p>Our cozy crochet artist who turns threads into treasures 🌸</p>
+</section>
 
-    <section class="timeline">
-        <div class="container left">
-            <div class="content">
-                <h3>2019</h3>
-                <p>Started crocheting during cozy monsoon evenings ☔</p>
-            </div>
-        </div>
-        <div class="container right">
-            <div class="content">
-                <h3>2021</h3>
-                <p>Created her first plushie for a friend 💖</p>
-            </div>
-        </div>
-        <div class="container left">
-            <div class="content">
-                <h3>2023</h3>
-                <p>Launched <strong>By Nishtha</strong> with a dream to spread joy through yarn 💫</p>
-            </div>
-        </div>
-    </section>
+<section class="floating-gallery" data-aos="fade-up">
+  <img src="images/1.png" alt="Crochet 1">
+  <img src="images/1.png" alt="Crochet 2">
+  <img src="images/1.png" alt="Crochet 3">
+  <img src="images/1.png" alt="Crochet 4">
+  <img src="images/1.png" alt="Crochet 5">
+</section>
 
-    <section class="video-section">
-        <h2>Watch Her Crochet in Action 🎥</h2>
-        <iframe src="https://www.youtube.com/embed/qYeo2XDqf6Q" allowfullscreen></iframe>
-    </section>
+<section class="timeline">
+  <div class="container left" data-aos="fade-right">
+    <div class="content">
+      <h3>2023</h3>
+      <p>Started learning crochet and creating handmade gifts for friends and family.</p>
+    </div>
+  </div>
+  <div class="container right" data-aos="fade-left">
+    <div class="content">
+      <h3>2024</h3>
+      <p>Launched "By Nishtha" to share cozy creations with the world 🧶</p>
+    </div>
+  </div>
+</section>
 
-    <footer>
-        Follow her journey on <a href="https://instagram.com" target="_blank">Instagram</a> 🌷<br>
-        Made with ❤️ by Vanit
-    </footer>
+<section class="video-section" data-aos="zoom-in">
+  <h2>Watch the Magic</h2>
+  <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+</section>
+
+<footer>
+  Made with love by <a href="#">Vanit 💖</a> for Nishtha (Bubu) &copy; 2025
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("open");
+  }
+</script>
+
 </body>
 </html>
