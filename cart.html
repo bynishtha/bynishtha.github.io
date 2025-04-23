@@ -3,176 +3,197 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Your Cart | bynishtha</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+  <title>By Nishtha - Cart</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
+    /* Cart page styles */
     :root {
-      --main-bg: #fffaf7;
-      --accent-color: #ffe8ed;
-      --text-color: #4b2e2e;
-      --button-bg: #ffe0e9;
-      --button-hover: #ffc9d6;
+      --bg-color: #fffaf6;
+      --primary-color: #fce1e4;
+      --accent-color: #fddde6;
+      --button-bg: #ffb6b9;
+      --button-hover: #ff9aa2;
+      --text-color: #444;
+      --font-family: 'Quicksand', sans-serif;
+      --font-logo: 'Pacifico', cursive;
+    }
+
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+      font-family: var(--font-family); 
     }
 
     body {
-      margin: 0;
-      background-color: var(--main-bg);
-      font-family: 'Playfair Display', serif;
-      color: var(--text-color);
-      padding: 20px;
+      background: var(--bg-color); 
+      color: var(--text-color); 
+      display: flex; 
+      flex-direction: column; 
+      min-height: 100vh; 
     }
 
-    header {
+    header { 
+      background: var(--accent-color); 
+      padding: 1rem; 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      font-size: 1.5rem; 
+      font-weight: bold; 
+    }
+
+    header a { 
+      text-decoration: none; 
+      color: var(--text-color); 
+      font-family: var(--font-logo); 
+    }
+
+    .cart-btn {
+      background: var(--button-bg); 
+      color: white; 
+      padding: 0.6rem 1rem;
+      border-radius: 8px; 
+      border: none; 
+      font-weight: bold;
+      display: flex; 
+      align-items: center; 
+      gap: 0.5rem;
+    }
+
+    main {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .cart-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-bottom: 20px;
-      border-bottom: 1px dashed #fbb;
+      padding: 1rem;
+      background-color: #fff;
+      border: 2px dotted #fcdde2;
+      border-radius: 8px;
+      margin-bottom: 1rem;
     }
 
-    header a {
-      font-family: 'Pacifico', cursive;
-      font-size: 1.8rem;
-      color: var(--text-color);
-      text-decoration: none;
-    }
-
-    .cart-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 30px;
-    }
-
-    .cart-table th, .cart-table td {
-      padding: 12px;
-      border-bottom: 1px solid #f4cfd7;
-      text-align: left;
-    }
-
-    .cart-table th {
-      background-color: #ffe8ed;
-      font-weight: 600;
-    }
-
-    .total-row {
-      font-weight: bold;
-      font-size: 1.1rem;
-    }
-
-    .confirm-btn {
-      margin-top: 30px;
-      display: inline-block;
-      padding: 12px 30px;
-      font-weight: bold;
-      font-size: 1rem;
-      background-color: var(--accent-color);
+    .cart-item button {
+      background: #ffb6b9;
+      color: white;
+      padding: 0.5rem 1rem;
       border: none;
-      border-radius: 14px;
+      border-radius: 6px;
       cursor: pointer;
-      transition: background 0.3s ease;
     }
 
-    .confirm-btn:hover {
-      background-color: var(--button-hover);
+    .cart-item button:hover {
+      background: #ff9aa2;
     }
 
-    .empty-cart {
+    .cart-summary {
+      background: #fddde6;
+      padding: 1rem;
+      border-radius: 8px;
       text-align: center;
-      margin-top: 50px;
-      font-size: 1.2rem;
-      color: #a66;
     }
 
-    @media (max-width: 600px) {
-      .cart-table th, .cart-table td {
-        font-size: 0.9rem;
-      }
+    .cart-summary .total {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
 
-      .confirm-btn {
-        width: 100%;
-      }
+    .checkout-btn {
+      background: #ff99a0;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+
+    .checkout-btn:hover {
+      background: #ff7a7a;
     }
   </style>
 </head>
 <body>
 
-  <header>
+<header>
+  <div>
     <a href="index.html">bynishtha</a>
-    <a href="shop.html" style="font-size: 1rem; color: #d96a8b;">← Back to Shop</a>
-  </header>
+  </div>
+  <a href="cart.html">
+    <button class="cart-btn">🛒 Cart</button>
+  </a>
+</header>
 
-  <main>
-    <h2>Your Cart</h2>
-    <table class="cart-table" id="cart-table">
-      <thead>
-        <tr>
-          <th>Product</th>
-          <th>Price (₹)</th>
-          <th>Quantity</th>
-          <th>Total (₹)</th>
-        </tr>
-      </thead>
-      <tbody id="cart-body">
-        <!-- JS will populate rows -->
-      </tbody>
-      <tfoot>
-        <tr class="total-row">
-          <td colspan="3">Grand Total</td>
-          <td id="grand-total">₹0</td>
-        </tr>
-      </tfoot>
-    </table>
+<main>
+  <h2>Your Cart</h2>
 
-    <div class="empty-cart" id="empty-cart" style="display:none;">
-      Your cart is empty 🧺<br>Go grab something cute!
-    </div>
+  <div id="cart-items-list">
+    <!-- Cart items will be displayed here -->
+  </div>
 
-    <button class="confirm-btn" onclick="confirmOrder()">Confirm Order</button>
-  </main>
+  <div class="cart-summary">
+    <p>Total Amount</p>
+    <p class="total" id="total-amount">₹0</p>
+    <a href="confirm.html"><button class="checkout-btn">Proceed to Checkout</button></a>
+  </div>
+</main>
 
-  <script>
-    function loadCart() {
-      const cart = JSON.parse(localStorage.getItem("cart")) || [];
-      const tbody = document.getElementById("cart-body");
-      const grandTotalElem = document.getElementById("grand-total");
-      const emptyCart = document.getElementById("empty-cart");
+<script>
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-      tbody.innerHTML = "";
-      let total = 0;
+  function updateCartDisplay() {
+    const cartItemsList = document.getElementById('cart-items-list');
+    cartItemsList.innerHTML = ''; // Clear the cart list
 
-      if (cart.length === 0) {
-        document.querySelector("table").style.display = "none";
-        emptyCart.style.display = "block";
-        return;
-      }
+    let total = 0;
 
-      cart.forEach(item => {
-        const row = document.createElement("tr");
+    cart.forEach((item, index) => {
+      total += item.price * item.quantity;
 
-        const itemTotal = item.price * item.quantity;
-        total += itemTotal;
+      const cartItem = document.createElement('div');
+      cartItem.classList.add('cart-item');
+      cartItem.innerHTML = `
+        <div>
+          <strong>${item.name}</strong><br>
+          ₹${item.price} x ${item.quantity}
+        </div>
+        <div>
+          <button onclick="removeFromCart(${index})">Remove</button>
+        </div>
+      `;
+      cartItemsList.appendChild(cartItem);
+    });
 
-        row.innerHTML = `
-          <td>${item.title}</td>
-          <td>₹${item.price.toFixed(2)}</td>
-          <td>${item.quantity}</td>
-          <td>₹${itemTotal.toFixed(2)}</td>
-        `;
-        tbody.appendChild(row);
-      });
+    // Update total amount
+    document.getElementById('total-amount').innerText = `₹${total}`;
+  }
 
-      grandTotalElem.textContent = `₹${total.toFixed(2)}`;
-    }
+  function removeFromCart(index) {
+    cart.splice(index, 1); // Remove item from cart
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartDisplay();
+  }
 
-    function confirmOrder() {
-      alert("Order confirmed! 🧶✨ Thank you for shopping with us!");
-      localStorage.removeItem("cart");
-      window.location.href = "index.html";
-    }
-
-    document.addEventListener("DOMContentLoaded", loadCart);
-  </script>
+  // Initialize cart display
+  updateCartDisplay();
+</script>
 
 </body>
 </html>

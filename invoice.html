@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Invoice - By Nishtha</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive;
+      background-color: #fff6f0;
+      padding: 2rem;
+    }
+
+    .invoice {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 2rem;
+      border: 2px dotted #ffcad4;
+      border-radius: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ff8fab;
+    }
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
+    .total {
+      font-weight: bold;
+      border-top: 1px dashed #ffcad4;
+      margin-top: 1rem;
+      padding-top: 1rem;
+    }
+
+    .print-btn {
+      margin-top: 2rem;
+      padding: 0.7rem 1.2rem;
+      border: none;
+      background-color: #ffb6c1;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="invoice">
+    <h1>🧾 Invoice</h1>
+    <div id="invoice-details"></div>
+    <div class="total" id="invoice-total"></div>
+    <button class="print-btn" onclick="window.print()">🖨️ Print</button>
+  </div>
+
+  <script>
+    const invoiceContainer = document.getElementById('invoice-details');
+    const totalContainer = document.getElementById('invoice-total');
+
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    let total = 0;
+    cart.forEach(item => {
+      const line = document.createElement('div');
+      line.className = 'item';
+      line.innerHTML = `<span>${item.name} (x${item.quantity})</span><span>₹${item.price * item.quantity}</span>`;
+      invoiceContainer.appendChild(line);
+      total += item.price * item.quantity;
+    });
+
+    totalContainer.textContent = `Total: ₹${total}`;
+  </script>
+
+</body>
+</html>

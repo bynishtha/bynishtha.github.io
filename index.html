@@ -9,212 +9,220 @@
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
 
   <style>
-:root {
-  --main-bg: #fffaf7;
-  --accent-color: #ffd1dc;
-  --text-color: #4b2e2e;
-  --button-bg: #ffe0e9;
-  --button-hover: #ffc9d6;
-  --font-primary: 'Playfair Display', serif;
-  --font-secondary: 'Quicksand', sans-serif;
-  --font-logo: 'Pacifico', cursive;
-}
+    :root {
+      --main-bg: #fffaf7;
+      --accent-color: #ffd1dc;
+      --text-color: #4b2e2e;
+      --button-bg: #ffe0e9;
+      --button-hover: #ffc9d6;
+      --popup-bg: rgba(255, 240, 240, 0.96);
+    }
 
-* {
-  box-sizing: border-box;
-  font-family: var(--font-primary);
-}
+    * {
+      box-sizing: border-box;
+      font-family: 'Playfair Display', serif;
+    }
 
-body {
-  margin: 0;
-  background-color: var(--main-bg);
-  color: var(--text-color);
-  text-align: center;
-  line-height: 1.6;
-}
+    body {
+      margin: 0;
+      background-color: var(--main-bg);
+      color: var(--text-color);
+      text-align: center;
+      font-size: 16px;
+    }
 
-header {
-  padding: 2rem 1rem;
-  background-color: #fff0f5;
-  border-bottom: 2px dashed #ffc6c6;
-}
+    /* Header */
+    header {
+      padding: 2rem 1rem;
+      background-color: #fff0f5;
+      border-bottom: 2px dashed #ffc6c6;
+    }
 
-h1 {
-  font-family: var(--font-logo);
-  font-size: 3rem;
-  margin: 0;
-}
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.8rem;
+      margin: 0;
+    }
 
-h2 {
-  font-size: 2rem;
-  color: #a44;
-  margin: 1rem 0;
-}
+    h2 {
+      font-size: 1.9rem;
+      color: #a44;
+      margin: 1rem 0;
+    }
 
-main {
-  display: flex;
-  justify-content: center;
-  padding: 2rem 1rem;
-}
+    /* Main */
+    main {
+      display: flex;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
 
-.container {
-  background-color: #fff;
-  padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-  max-width: 600px;
-  width: 100%;
-}
+    .container {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      max-width: 600px;
+      width: 100%;
+    }
 
-.intro p {
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
-  padding: 0 1rem;
-}
+    .intro p {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      padding: 0 0.5rem;
+    }
 
-.nav-links {
-  margin-top: 2rem;
-}
+    /* Navigation Links */
+    .nav-links {
+      margin-top: 2rem;
+    }
 
-.nav-links a {
-  display: inline-block;
-  margin: 0.5rem;
-  padding: 0.75rem 1.25rem;
-  text-decoration: none;
-  background-color: var(--button-bg);
-  border-radius: 0.75rem;
-  color: #a44;
-  font-weight: bold;
-  font-size: 1rem;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
+    .nav-links a {
+      display: inline-block;
+      margin: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      background-color: var(--button-bg);
+      border-radius: 12px;
+      color: #a44;
+      font-weight: bold;
+      font-size: 0.9rem;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
 
-.nav-links a:hover {
-  background-color: var(--button-hover);
-  transform: scale(1.05);
-}
+    .nav-links a:hover {
+      background-color: var(--button-hover);
+      transform: scale(1.05);
+    }
 
-footer {
-  margin: 2rem 1rem;
-  font-size: 0.9rem;
-  color: #888;
-}
+    /* Footer */
+    footer {
+      margin: 2rem 1rem;
+      font-size: 0.9rem;
+      color: #888;
+    }
 
-/* Birthday Popup */
-.popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 240, 240, 0.96);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-  padding: 1rem;
-}
+    /* 🎉 New Birthday Popup */
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: var(--popup-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      animation: fadeIn 0.8s ease;
+      padding: 1.5rem;
+    }
 
-.popup-content {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 1.25rem;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-  max-width: 90vw;
-  width: 100%;
-  text-align: center;
-  position: relative;
-  animation: fadeIn 1s ease-in-out;
-}
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
 
-.popup-content .frame {
-  position: relative;
-  display: inline-block;
-  margin-bottom: 1rem;
-}
+    .popup-content {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      max-width: 90%;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
 
-.popup-content img.photo {
-  border-radius: 0.25rem;
-  width: 100%;
-  max-width: 280px;
-  height: auto;
-  object-fit: cover;
-  position: relative;
-  z-index: 1;
-}
+    .popup-content .frame {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
 
-.popup-content img.flowers {
-  position: absolute;
-  top: -20px;
-  left: -20px;
-  width: 160px;
-  height: 160px;
-  z-index: 0;
-}
+    .popup-content img.photo {
+      border-radius: 1px;
+      width: 100%;
+      max-width: 280px;
+      height: auto;
+      object-fit: cover;
+      position: relative;
+      z-index: 1;
+    }
 
-.popup-content button {
-  margin-top: 1.25rem;
-  padding: 0.625rem 1.5rem;
-  background: var(--accent-color);
-  border: none;
-  border-radius: 0.625rem;
-  font-weight: bold;
-  cursor: pointer;
-  font-family: var(--font-secondary);
-  font-size: 1rem;
-  transition: background 0.3s ease;
-}
+    .popup-content img.flowers {
+      position: absolute;
+      top: -25px;
+      left: -25px;
+      width: 160px;
+      height: 160px;
+      z-index: 0;
+      opacity: 0.7;
+    }
 
-.popup-content button:hover {
-  background: var(--button-hover);
-}
+    .popup-content button {
+      margin-top: 1.5rem;
+      padding: 0.7rem 1.8rem;
+      background: var(--accent-color);
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1rem;
+      box-shadow: 0 5px 15px rgba(255, 192, 203, 0.3);
+      transition: all 0.3s ease;
+    }
 
-audio {
-  display: none;
-}
+    .popup-content button:hover {
+      background: var(--button-hover);
+      transform: translateY(-2px);
+    }
 
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+    /* Responsive Settings */
+    @media (max-width: 1024px) {
+      h1 { font-size: 2.4rem; }
+      h2 { font-size: 1.6rem; }
+      .container { padding: 1.8rem; }
+    }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 2.5rem;
-  }
-  h2 {
-    font-size: 1.75rem;
-  }
-  .nav-links a {
-    display: block;
-    width: 80%;
-    margin: 0.5rem auto;
-  }
-  .popup-content img.flowers {
-    width: 130px;
-    height: 130px;
-    top: -15px;
-    left: -15px;
-  }
-}
+    @media (max-width: 768px) {
+      h1 { font-size: 2.1rem; }
+      h2 { font-size: 1.4rem; }
+      .nav-links a {
+        display: block;
+        width: 90%;
+        margin: 0.6rem auto;
+        font-size: 0.95rem;
+      }
+      .popup-content img.flowers {
+        width: 120px;
+        height: 120px;
+        top: -20px;
+        left: -20px;
+      }
+      .container {
+        max-width: 95%;
+        margin: 0 auto;
+      }
+    }
 
-@media (max-width: 480px) {
-  h1 {
-    font-size: 2rem;
-  }
-  h2 {
-    font-size: 1.5rem;
-  }
-  .popup-content {
-    padding: 1.5rem;
-  }
-  .popup-content button {
-    font-size: 0.9rem;
-    padding: 0.5rem 1.25rem;
-  }
-}
+    @media (max-width: 480px) {
+      body { font-size: 15px; }
+      h1 { font-size: 1.8rem; }
+      h2 { font-size: 1.2rem; }
+      .popup-content {
+        padding: 1.2rem;
+      }
+      .popup-content button {
+        width: 90%;
+        font-size: 0.95rem;
+      }
+      .popup-content img.photo {
+        max-width: 220px;
+      }
+    }
 
   </style>
 </head>
