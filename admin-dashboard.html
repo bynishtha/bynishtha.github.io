@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Admin Dashboard | bynishtha</title>
-
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
@@ -18,89 +16,117 @@
     }
 
     * {
-      font-family: 'Quicksand', sans-serif;
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
+      font-family: 'Quicksand', sans-serif;
     }
 
     body {
-      margin: 0;
       background-color: var(--main-bg);
       color: var(--text-color);
       display: flex;
-      height: 100vh;
+      min-height: 100vh;
     }
 
-    /* Sidebar Style */
+    /* Sidebar */
     .sidebar {
       width: 250px;
       background-color: var(--accent-color);
       padding: 20px;
-      color: #392222;
-      height: 100%;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      transition: transform 0.3s ease;
     }
 
     .sidebar h2 {
-      font-size: 1.6rem;
-      margin-bottom: 20px;
       text-align: center;
-      font-weight: bold;
+      margin-bottom: 30px;
+      font-weight: 600;
+      font-size: 1.5rem;
     }
 
     .sidebar a {
       text-decoration: none;
-      color: #513030;
+      color: var(--text-color);
       font-size: 1.1rem;
       margin-bottom: 15px;
       display: block;
-      transition: color 0.3s ease;
+      transition: color 0.3s;
     }
 
     .sidebar a:hover {
-      color: #ff94ab;
+      color: #ff6b81;
     }
 
-    /* Main Content Area */
+    /* Main */
     .main-content {
-      flex-grow: 1;
+      flex: 1;
       padding: 30px;
-      overflow-y: auto;
     }
 
-    h1 {
-      font-size: 2rem;
-      color: var(--text-color);
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
     }
 
     .welcome-msg {
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       margin-bottom: 20px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
     }
 
     .card {
       background-color: white;
+      border-radius: 10px;
       padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
     .card h3 {
-      margin-top: 0;
-      color: var(--text-color);
+      margin-bottom: 10px;
     }
 
-    .card p {
-      color: #555;
-      font-size: 1.1rem;
+    .menu-btn {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      background: none;
+      border: none;
     }
 
-    /* Responsive Sidebar */
+    /* Mobile responsive styles */
     @media (max-width: 768px) {
       .sidebar {
-        width: 200px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        transform: translateX(-100%);
+        z-index: 1000;
+      }
+
+      .sidebar.active {
+        transform: translateX(0);
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .main-content {
+        padding: 20px;
+      }
+
+      body.mobile-active {
+        overflow: hidden;
       }
     }
   </style>
@@ -108,8 +134,8 @@
 <body>
 
   <!-- Sidebar -->
-  <div class="sidebar">
-    <h2>Admin Dashboard</h2>
+  <div class="sidebar" id="sidebar">
+    <h2>bynishtha Admin</h2>
     <a href="#">Dashboard</a>
     <a href="#">Manage Products</a>
     <a href="#">Manage Orders</a>
@@ -119,27 +145,40 @@
 
   <!-- Main Content -->
   <div class="main-content">
-    <h1>Welcome to the Admin Dashboard</h1>
-    <div class="welcome-msg">
-      <p>Hello, Admin! You can manage the shop content from here.</p>
-    </div>
+    <header>
+      <h1>Dashboard</h1>
+      <button class="menu-btn" id="menuBtn">☰</button>
+    </header>
 
-    <!-- Cards for Dashboard -->
-    <div class="card">
-      <h3>Product Overview</h3>
-      <p>View and manage products added to the shop.</p>
-    </div>
+    <p class="welcome-msg">Hi Nishtha 👋, Manage your store from this dashboard!</p>
 
-    <div class="card">
-      <h3>Order Overview</h3>
-      <p>View and manage customer orders placed in the shop.</p>
-    </div>
+    <div class="cards">
+      <div class="card">
+        <h3>🛍️ Products</h3>
+        <p>Add, update or remove products listed in the store.</p>
+      </div>
 
-    <div class="card">
-      <h3>Settings</h3>
-      <p>Update your account settings, shop settings, etc.</p>
+      <div class="card">
+        <h3>📦 Orders</h3>
+        <p>Track and manage customer orders efficiently.</p>
+      </div>
+
+      <div class="card">
+        <h3>⚙️ Settings</h3>
+        <p>Update store settings, account preferences, etc.</p>
+      </div>
     </div>
   </div>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const sidebar = document.getElementById('sidebar');
+
+    menuBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('active');
+      document.body.classList.toggle('mobile-active');
+    });
+  </script>
 
 </body>
 </html>

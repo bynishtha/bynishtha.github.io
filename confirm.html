@@ -1,181 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Confirm Order - By Nishtha</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    /* CSS Variables for easy color management */
+    
     :root {
-      --bg-color: #fffaf6; /* Soft pastel background */
-      --primary-color: #f68693; /* Pastel pink */
-      --accent-color: #7a3d4e; /* Lighter pink accent */
-      --button-bg: #ffb6b9; /* Soft pastel button background */
-      --button-hover: #ff9aa2; /* Darker pastel pink button hover */
-      --text-color: #444; /* Dark text for readability */
+      --bg-color: #fffaf6;
+      --primary-color: #fce1e4;
+      --accent-color: #fddde6;
+      --button-bg: #ffb6b9;
+      --button-hover: #ff9aa2;
+      --text-color: #444;
       --font-family: 'Quicksand', sans-serif;
       --font-logo: 'Pacifico', cursive;
     }
 
-    /* General Styles */
-    body {
-      font-family: var(--font-family);
-      margin: 0;
-      padding: 0;
-      background-color: var(--bg-color);
-      color: var(--text-color);
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+      font-family: var(--font-family); 
     }
 
-    h1, h2 {
-      text-align: center;
-      color: var(--primary-color);
+    body {
+      background: var(--bg-color); 
+      color: var(--text-color); 
+      display: flex; 
+      flex-direction: column; 
+      min-height: 100vh; 
+    }
+
+    header { 
+      background: var(--accent-color); 
+      padding: 1rem; 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      font-size: 1.5rem; 
+      font-weight: bold; 
+    }
+
+    header a { 
+      text-decoration: none; 
+      color: var(--text-color); 
+      font-family: var(--font-logo); 
+    }
+
+    .cart-btn {
+      background: var(--button-bg); 
+      color: white; 
+      padding: 0.6rem 1rem;
+      border-radius: 8px; 
+      border: none; 
+      font-weight: bold;
+      display: flex; 
+      align-items: center; 
+      gap: 0.5rem;
     }
 
     h1 {
-      margin-top: 20px;
-    }
-
-    h2 {
-      margin-bottom: 20px;
-    }
-
-    button {
-      background-color: var(--button-bg);
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      margin-top: 20px;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: var(--button-hover);
-    }
-
-    button:disabled {
-      background-color: #d1d1d1; /* Grey for disabled state */
-      cursor: not-allowed;
-    }
-
-    /* Confirm Order Page Styles */
-    .confirm-box {
-      max-width: 600px;
-      margin: 30px auto;
-      padding: 20px;
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .confirm-box form {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .confirm-box label {
-      font-size: 16px;
-      margin-bottom: 8px;
-      color: var(--accent-color);
-    }
-
-    .confirm-box input, .confirm-box textarea {
-      padding: 10px;
-      margin-bottom: 20px;
-      border: 1px solid #d1d1d1; /* Light grey border */
-      border-radius: 5px;
-      font-size: 16px;
-    }
-
-    /* Table Style for Order Summary */
-    #orderSummary {
-      margin-top: 20px;
-      font-size: 18px;
-      color: var(--accent-color);
-    }
-
-    #orderSummary table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-
-    #orderSummary th, #orderSummary td {
-      padding: 12px;
-      text-align: left;
-      border-bottom: 1px solid #f0f0f0; /* Soft light grey border */
-    }
-
-    #orderSummary th {
-      background-color: #f9f9f9; /* Light grey for header */
-    }
-
-    #orderSummary td {
-      font-size: 16px;
-    }
-
-    /* Styled PDF Button */
-    #orderSummary .pdf-btn {
-      margin-top: 20px;
-      background-color: var(--primary-color);
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
+      color: #444;
       text-align: center;
+      padding: 20px 10px 0;
+    }
+    .confirm-box {
+      background: white;
+      border: 2px solid #cc6f87;
+      padding: 20px;
+      max-width: 600px;
+      margin: 20px auto;
+    }
+    label, input, textarea {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      font-size: 1em;
+    }
+    button {
+      background: #cc6f87;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      width: 100%;
+    }
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+    th, td {
+      border-bottom: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
     }
 
-    #orderSummary .pdf-btn:hover {
-      background-color: var(--button-hover);
-    }
-
-    #orderSummary .pdf-btn:disabled {
-      background-color: #d1d1d1;
-      cursor: not-allowed;
-    }
-
-    /* Responsive Styles */
-    @media (max-width: 768px) {
-      body {
-        padding: 20px;
-      }
-
-      .confirm-box {
-        width: 90%;
-        padding: 15px;
-      }
-
-      button {
-        width: 100%;
-      }
-
-      #orderSummary table {
-        font-size: 14px;
-      }
-
-      #orderSummary td button {
-        padding: 3px 6px;
-      }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      background-color: var(--accent-color);
     }
   </style>
 </head>
 <body>
+
+  <!-- Navbar -->
+  <header>
+    <a href="index.html">bynishtha</a>
+    <a href="cart.html"><button class="cart-btn">🛒 Cart</button></a>
+  </header>
+
+  <!-- Page Content -->
   <h1>🎁 Confirm Your Order</h1>
   <div class="confirm-box">
     <form id="orderForm">
       <label for="name">Name</label>
-      <input type="text" id="name" required>
+      <input type="text" id="name" required />
       <label for="address">Address</label>
       <textarea id="address" rows="3" required></textarea>
       <button type="submit">Place Order</button>
     </form>
+    <br>
     <div id="orderSummary"></div>
   </div>
+  
+  <footer>
+    &copy; 2025 By Nishtha. All rights reserved.
+  </footer>
 
+  
+
+  <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>
     const { jsPDF } = window.jspdf;
@@ -190,14 +149,12 @@
       let summary = `<h2>Thank you, ${name} 💖</h2>`;
       summary += `<p>Delivery to: ${address}</p>`;
       summary += '<table><tr><th>Product</th><th>Qty</th><th>₹</th></tr>';
-
       let total = 0;
       cart.forEach(item => {
         summary += `<tr><td>${item.name}</td><td>${item.quantity}</td><td>₹${item.price * item.quantity}</td></tr>`;
         total += item.price * item.quantity;
       });
       summary += `</table><p><strong>Total: ₹${total}</strong></p>`;
-
       const pdfBtn = `<button onclick="downloadBill('${name}', '${address}', ${total})">Download PDF Bill</button>`;
       summaryDiv.innerHTML = summary + pdfBtn;
       localStorage.removeItem("cart");
@@ -216,7 +173,7 @@
         y += 10;
       });
       doc.text(`Total: ₹${total}`, 20, y + 10);
-      doc.save("ByNishtha_Receipt.pdf");
+      doc.save("receipt.pdf");
     }
   </script>
 </body>

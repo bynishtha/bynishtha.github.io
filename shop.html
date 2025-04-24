@@ -106,6 +106,7 @@
     .product img {
       width: 100%;
       border-radius: 5px;
+      height: 10rem;
     }
 
     .product button {
@@ -129,6 +130,13 @@
       font-size: 1.3rem;
       font-weight: bold;
     }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      background-color: var(--accent-color);
+    }
   </style>
 </head>
 <body>
@@ -141,31 +149,37 @@
     <button class="cart-btn">🛒 Cart</button>
   </a>
 </header>
-
 <main>
   <h2>Categories</h2>
   <div class="categories">
+    <button onclick="filterProducts('')">All Products</button>
     <button onclick="filterProducts('Flowers')">Flowers</button>
     <button onclick="filterProducts('Crochet')">Crochet</button>
-    <button onclick="filterProducts('Custom')">Custom Orders</button>
   </div>
-  
 
   <section>
     <h2 id="category-title">All Products</h2>
-
     <div id="product-list" class="products">
       <!-- Product items will be displayed here -->
     </div>
   </section>
+
+  <!-- Custom Orders Link -->
+  <div class="tagline">
+    Looking for something unique? <a href="custom-order.html" style="color: #ff5f7e; text-decoration: none; font-weight: bold;">Custom Orders</a>
+  </div>
 </main>
+
+<footer>
+  &copy; 2025 By Nishtha. All rights reserved.
+</footer>
 
 <script>
   // Dummy data for the shop products
   const products = [
-    { name: "Red Roses", category: "Flowers", price: 200, image: "rose.jpg" },
-    { name: "Blue Crochet Hat", category: "Crochet", price: 500, image: "crochet-hat.jpg" },
-    { name: "Custom Crochet Blanket", category: "Custom", price: 800, image: "crochet-blanket.jpg" }
+    { name: "Red Roses", category: "Flowers", price: 200, image: "images/1.png" },
+    { name: "Blue Crochet Hat", category: "Crochet", price: 500, image: "images/2.png" },
+    { name: "Custom Crochet Blanket", category: "Custom", price: 800, image: "images/3.png  " }
   ];
 
   let cart = JSON.parse(localStorage.getItem('cart')) || [];

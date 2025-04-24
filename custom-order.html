@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>By Nishtha - Custom Order</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-color: #fffaf6;
+      --primary-color: #fce1e4;
+      --accent-color: #fddde6;
+      --button-bg: #ffb6b9;
+      --button-hover: #ff9aa2;
+      --text-color: #444;
+      --font-family: 'Quicksand', sans-serif;
+      --font-logo: 'Pacifico', cursive;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: var(--font-family);
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header { 
+      background: var(--accent-color); 
+      padding: 1rem; 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      font-size: 1.5rem; 
+      font-weight: bold; 
+    }
+
+    header a { 
+      text-decoration: none; 
+      color: var(--text-color); 
+      font-family: var(--font-logo); 
+    }
+
+    .shop-btn {
+      background: var(--button-bg); 
+      font-family: var(--font-family);
+      color: white; 
+      padding: 0.6rem 1rem;
+      border-radius: 8px; 
+      border: none; 
+      font-weight: bold;
+      display: flex; 
+      align-items: center; 
+      gap: 0.5rem;
+    }
+
+    main {
+      flex: 1;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--text-color);
+    }
+
+    form {
+      background-color: var(--primary-color);
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin: 1rem 0 0.5rem;
+      font-weight: 600;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: var(--button-bg);
+      color: white;
+      padding: 0.7rem 1.2rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: var(--button-hover);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      background-color: var(--accent-color);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="index.html">bynishtha</a>
+  <a href="shop.html" class="shop-btn" style="font-size: 1rem;">Shop</a>
+</header>
+
+<main>
+  <h2>Custom Order Form</h2>
+  <form onsubmit="handleSubmit(event)">
+    <label for="name">Your Name</label>
+    <input type="text" id="name" required />
+
+    <label for="email">Email</label>
+    <input type="email" id="email" required />
+
+    <label for="product">Product Type</label>
+    <select id="product" required>
+      <option value="">Select</option>
+      <option value="crochet-toy">Crochet Toy</option>
+      <option value="home-decor">Home Decor</option>
+      <option value="wearable">Wearable</option>
+      <option value="other">Other</option>
+    </select>
+
+    <label for="details">Describe your custom request</label>
+    <textarea id="details" rows="5" required></textarea>
+
+    <button type="submit">Submit Order</button>
+  </form>
+</main>
+
+<footer>
+  &copy; 2025 By Nishtha. All rights reserved.
+</footer>
+
+<script>
+  function handleSubmit(e) {
+    e.preventDefault();
+    alert("🎉 Thank you for your custom order! We'll get back to you soon.");
+    e.target.reset();
+  }
+</script>
+
+</body>
+</html>

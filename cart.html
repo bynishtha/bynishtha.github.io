@@ -52,7 +52,7 @@
       font-family: var(--font-logo); 
     }
 
-    .cart-btn {
+    .shop-btn {
       background: var(--button-bg); 
       color: white; 
       padding: 0.6rem 1rem;
@@ -128,6 +128,13 @@
     .checkout-btn:hover {
       background: #ff7a7a;
     }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      background-color: var(--accent-color);
+    }
   </style>
 </head>
 <body>
@@ -136,8 +143,8 @@
   <div>
     <a href="index.html">bynishtha</a>
   </div>
-  <a href="cart.html">
-    <button class="cart-btn">🛒 Cart</button>
+  <a href="shop.html">
+    <button class="shop-btn">Shop</button>
   </a>
 </header>
 
@@ -154,13 +161,30 @@
     <a href="confirm.html"><button class="checkout-btn">Proceed to Checkout</button></a>
   </div>
 </main>
+<br><br><br><br><br><br><br><br><br><br><br>
+<footer>
+  &copy; 2025 By Nishtha. All rights reserved.
+</footer>
+
 
 <script>
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
   function updateCartDisplay() {
     const cartItemsList = document.getElementById('cart-items-list');
+    const totalAmount = document.getElementById('total-amount');
+    const checkoutBtn = document.querySelector('.checkout-btn');
+
     cartItemsList.innerHTML = ''; // Clear the cart list
+
+    if (cart.length === 0) {
+      cartItemsList.innerHTML = `<p style="text-align: center; color: #888;">🧺 Your cart is empty. Add an item to proceed.</p>`;
+      totalAmount.innerText = '₹0';
+      checkoutBtn.disabled = true;
+      checkoutBtn.style.backgroundColor = '#ccc';
+      checkoutBtn.style.cursor = 'not-allowed';
+      return;
+    }
 
     let total = 0;
 
@@ -181,19 +205,29 @@
       cartItemsList.appendChild(cartItem);
     });
 
-    // Update total amount
-    document.getElementById('total-amount').innerText = `₹${total}`;
+    totalAmount.innerText = `₹${total}`;
+    checkoutBtn.disabled = false;
+    checkoutBtn.style.backgroundColor = '#ff99a0';
+    checkoutBtn.style.cursor = 'pointer';
   }
 
   function removeFromCart(index) {
-    cart.splice(index, 1); // Remove item from cart
+    cart.splice(index, 1);
     localStorage.setItem('cart', JSON.stringify(cart));
     updateCartDisplay();
   }
 
-  // Initialize cart display
+  // Prevent checkout if cart is empty
+  document.querySelector('.checkout-btn').addEventListener('click', function (e) {
+    if (cart.length === 0) {
+      e.preventDefault();
+      alert("Your cart is empty! Please add items to proceed.");
+    }
+  });
+
   updateCartDisplay();
 </script>
+
 
 </body>
 </html>
