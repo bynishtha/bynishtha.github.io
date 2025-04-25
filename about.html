@@ -4,288 +4,304 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About - By Nishtha</title>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand&display=swap" rel="stylesheet"/>
   <style>
+        :root {
+      --bg-color: #fffaf6;
+      --primary-color: #fce1e4;
+      --accent-color: #fddde6;
+      --button-bg: #ffb6b9;
+      --button-hover: #ff9aa2;
+      --text-color: #444;
+      --font-family: 'Quicksand', sans-serif;
+      --font-logo: 'Pacifico', cursive;
+    }
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Quicksand', sans-serif;
     }
-
     body {
-      background-color: #fffafc;
-      color: #444;
-      line-height: 1.6;
+      font-family: 'Quicksand', sans-serif;
+      background-color: #fffaf6;
     }
-
-    nav {
-      background-color: #ffeaf4;
+    header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.5rem 2rem;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 1rem 2rem;
+      background-color: #fffaf6;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .brand {    
+      text-decoration: none; 
+      color: var(--text-color); 
+      font-family: var(--font-logo); 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      font-size: 1.5rem; 
+      font-weight: bold; 
+    }
+    nav {
       position: relative;
     }
-
-    .logo {
-      font-size: 1.6rem;
-      font-weight: 600;
-      color: #4b2e2e;
-      font-family: 'Pacifico', cursive;
+    .menu-icon {
+      font-size: 2rem;
+      cursor: pointer;
+      display: none;
     }
-
-    .nav-links {
+    .menu {
+      list-style: none;
       display: flex;
-      gap: 2rem;
+      gap: 1.5rem;
     }
-
-    .nav-links a {
+    .menu li a {
       text-decoration: none;
       color: #444;
-      font-weight: 500;
-      transition: color 0.3s ease;
+      font-weight: bold;
     }
-
-    .nav-links a:hover {
-      color: #ff4081;
-    }
-
-    .menu-toggle {
+    #menu-toggle {
       display: none;
-      font-size: 1.8rem;
-      cursor: pointer;
-      color: #444;
+    }
+    @media (max-width: 768px) {
+      .menu {
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: #fffaf6;
+        width: 200px;
+        display: none;
+        padding: 1rem;
+      }
+      #menu-toggle:checked + .menu-icon + .menu {
+        display: flex;
+      }
+      .menu-icon {
+        display: block;
+      }
     }
 
     .hero {
-      text-align: center;
-      padding: 4rem 2rem;
-      background: linear-gradient(to bottom, #fff0f5, #ffeef8);
-    }
-
-    .hero h1 {
-      font-size: 2.8rem;
-      color: #ff69b4;
-      margin-bottom: 0.5rem;
-    }
-
-    .hero p {
-      font-size: 1.1rem;
-      color: #555;
-    }
-
-    .floating-gallery {
+      height: 100vh;
+      background: url('images/hero-bg.jpg') no-repeat center center/cover;
       display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      gap: 1rem;
-      padding: 2rem;
-    }
-
-    .floating-gallery img {
-      scroll-snap-align: center;
-      width: 250px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-    }
-
-    .floating-gallery img:hover {
-      transform: scale(1.05);
-    }
-
-    .timeline {
-      position: relative;
-      max-width: 900px;
-      margin: 3rem auto;
-      padding: 2rem;
-    }
-
-    .timeline::after {
-      content: '';
-      position: absolute;
-      width: 4px;
-      background-color: #ffb6c1;
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      margin-left: -2px;
-    }
-
-    .container {
-      padding: 1rem 2rem;
-      position: relative;
-      background-color: inherit;
-      width: 50%;
-    }
-
-    .left {
-      left: 0;
-    }
-
-    .right {
-      left: 50%;
-    }
-
-    .left::before, .right::before {
-      content: " ";
-      height: 20px;
-      width: 20px;
-      position: absolute;
-      top: 15px;
-      background-color: white;
-      border: 4px solid #ff69b4;
-      border-radius: 50%;
-      z-index: 1;
-    }
-
-    .left::before {
-      right: -10px;
-    }
-
-    .right::before {
-      left: -10px;
-    }
-
-    .content {
-      padding: 1rem;
-      background-color: #fff0f5;
-      position: relative;
-      border-radius: 6px;
-    }
-
-    .video-section {
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      margin: 3rem 0;
+      position: relative;
+    }
+    .overlay {
+      background-color: rgba(255,255,255,0.7);
+      padding: 2rem;
+      border-radius: 10px;
+    }
+    .overlay h1 {
+      font-size: 3rem;
+      font-family: 'Pacifico', cursive;
+      color: #7a3d4e;
+    }
+    .overlay p {
+      font-size: 1.5rem;
+      color: #333;
+      margin-top: 1rem;
     }
 
-    iframe {
-      border: none;
-      border-radius: 8px;
-      max-width: 90%;
-      height: 350px;
+    .journey, .works {
+      padding: 4rem 2rem;
+    }
+    .journey {
+      background-color: #fce1e4;
+      min-height: 100vh;
+    }
+    .journey h2, .works h2 {
+      font-family: 'Quicksand', cursive;
+      background-color: #fce1e4;
+      color: #7a3d4e;
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .journey p {
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      font-size: 1.2rem;
+      color: #444;
+      text-align: center;
+    }
+    .gallery, .gallery-track {
+      overflow-x: auto;
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+    .gallery-track img {
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      flex-shrink: 0;
+    }
+    .category {
+      margin-top: 3rem;
+    }
+    .category h3 {
+      font-size: 1.8rem;
+      color: #444;
+      margin-bottom: 1rem;
+      font-family: 'Quicksand', sans-serif;
     }
 
     footer {
       text-align: center;
       padding: 2rem;
-      background-color: #ffeaf4;
-      font-size: 1rem;
-      margin-top: 2rem;
-    }
-
-    footer a {
-      color: #ff4081;
-      text-decoration: none;
+      background-color: #f68693;
+      color: white;
+      font-family: 'Quicksand', sans-serif;
       font-weight: bold;
-    }
-
-    footer a:hover {
-      color: #ff69b4;
-    }
-
-    @media (max-width: 768px) {
-      .nav-links {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background-color: #ffeaf4;
-        width: 100%;
-        flex-direction: column;
-        display: none;
-        padding: 1rem 2rem;
-        z-index: 9; /* Also optional to explicitly stack below nav if needed */
-      }
-
-
-      .nav-links.open {
-        display: flex;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-
-      .container {
-        width: 100%;
-      }
-
-      .timeline::after {
-        left: 31px;
-      }
-
-      .left::before, .right::before {
-        left: 15px;
-      }
-
-      .right {
-        left: 0%;
-      }
     }
   </style>
 </head>
-<body onload="AOS.init();">
+<body>
+  <header>
+    <div class="brand">bynishtha</div>
+    <nav>
+      <input type="checkbox" id="menu-toggle" />
+      <label for="menu-toggle" class="menu-icon">&#9776;</label>
+      <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<nav>
-  <div class="logo">bynishtha</div>
-  <div class="menu-toggle" onclick="toggleMenu()">
-    <i class="fas fa-bars"></i>
-  </div>
-  <div class="nav-links" id="navLinks">
-    <a href="index.html">Home</a>
-    <a href="shop.html">Shop</a>
-    <a href="cart.html">Cart</a>
-    <a href="contact.html">Contact</a>
-  </div>
-</nav>
-
-<section class="hero" data-aos="fade-up">
-  <h1>Meet Nishtha ✨</h1>
-  <p>Our cozy crochet artist who turns threads into treasures 🌸</p>
-</section>
-
-<section class="floating-gallery" data-aos="fade-up">
-  <img src="images/1.png" alt="Crochet 1">
-  <img src="images/1.png" alt="Crochet 2">
-  <img src="images/1.png" alt="Crochet 3">
-  <img src="images/1.png" alt="Crochet 4">
-  <img src="images/1.png" alt="Crochet 5">
-</section>
-
-<section class="timeline">
-  <div class="container left" data-aos="fade-right">
-    <div class="content">
-      <h3>2023</h3>
-      <p>Started learning crochet and creating handmade gifts for friends and family.</p>
+  <section class="works">
+    <h2>Her Works</h2>
+  
+    <div class="category">
+      <h3>Crochet</h3>
+      <div class="gallery">
+        <div class="gallery-track">
+          <img src="art/Crochet(0).jpg" alt="Crochet 0">
+          <img src="art/Crochet(1).jpg" alt="Crochet 1">
+          <img src="art/Crochet(2).jpg" alt="Crochet 2">
+          <img src="art/Crochet(3).jpg" alt="Crochet 3">
+          <img src="art/Crochet(4).jpg" alt="Crochet 4">
+          <img src="art/Crochet(5).jpg" alt="Crochet 5">
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="container right" data-aos="fade-left">
-    <div class="content">
-      <h3>2024</h3>
-      <p>Launched "By Nishtha" to share cozy creations with the world 🧶</p>
+  
+    <div class="category">
+      <h3>Sketches</h3>
+      <div class="gallery">
+        <div class="gallery-track">
+          <img src="art/Sketch.jpg" alt="Sketch">
+          <img src="art/Sketch(1).jpg" alt="Sketch 1">
+          <img src="art/Sketch(2).jpg" alt="Sketch 2">
+          <img src="art/Sketch(3).jpg" alt="Sketch 3">
+          <img src="art/Sketch(4).jpg" alt="Sketch 4">
+          <img src="art/Sketch(5).jpg" alt="Sketch 5">
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  
+    <div class="category">
+      <h3>Clay</h3>
+      <div class="gallery">
+        <div class="gallery-track">
+          <img src="art/Clay(1).jpg" alt="Clay 1">
+          <img src="art/Clay(2).jpg" alt="Clay 2">
+          <img src="art/Clay(3).jpg" alt="Clay 3">
+          <img src="art/Clay(4).jpg" alt="Clay 4">
+          <img src="art/Clay(5).jpg" alt="Clay 5">
+          <img src="art/Clay(6).jpg" alt="Clay 6">
+        </div>
+      </div>
+    </div>
+  
+    <div class="category">
+      <h3>Pottery</h3>
+      <div class="gallery">
+        <div class="gallery-track">
+          <img src="art/Pottery(1).jpg" alt="Pottery 1">
+          <img src="art/Pottery(2).jpg" alt="Pottery 2">
+          <img src="art/Pottery(3).jpg" alt="Pottery 3">
+        </div>
+      </div>
+    </div>
+  
+    <div class="category">
+      <h3>Gods</h3>
+      <div class="gallery">
+        <div class="gallery-track">
+          <img src="art/God(1).jpg" alt="God 1">
+          <img src="art/God(2).jpg" alt="God 2">
+        </div>
+      </div>
+    </div>
+  
+    <div class="category">
+      <h3>Flowers</h3>
+      <div class="gallery">
+        <div class="gallery-track">
+          <img src="art/Flowers.jpg" alt="Flowers">
+          <img src="art/Flowers(2).jpg" alt="Flowers 2">
+          <img src="art/Flowers(3).jpg" alt="Flowers 3">
+        </div>
+      </div>
+    </div>
+  
+    <div class="category">
+      <h3>Decorations</h3>
+      <div class="gallery">
+        <div class="gallery-track">
+          <img src="art/Decoration(1).jpg" alt="Decoration 1">
+          <img src="art/Decoration(2).jpg" alt="Decoration 2">
+        </div>
+      </div>
+    </div>
+  
+    <div class="category">
+      <h3>Others</h3>
+      <div class="gallery">
+        <div class="gallery-track">
+          <img src="art/Others(1).jpg" alt="Others 1">
+          <img src="art/Others(2).jpg" alt="Others 2">
+        </div>
+      </div>
+    </div>
+  
+    <div class="category">
+      <h3>Books</h3>
+      <div class="gallery">
+        <div class="gallery-track">
+          <img src="art/Book.jpg" alt="Book">
+          <img src="art/Book(1).jpg" alt="Book 1">
+          <img src="art/Book(2).jpg" alt="Book 2">
+          <img src="art/Book(3).jpg" alt="Book 3">
+        </div>
+      </div>
+    </div>
+  
+    <div class="category">
+      <h3>Special</h3>
+      <div class="gallery">
+        <div class="gallery-track">
+          <img src="art/Bappu.jpg" alt="Bappu Art">
+        </div>
+      </div>
+    </div>
+  
 
-<section class="video-section" data-aos="zoom-in">
-  <h2>Watch the Magic</h2>
-  <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-</section>
+  </section>
 
-<footer>
-  Made with love by <a href="#">Vanit 💖</a> for Nishtha (Bubu) &copy; 2025
-</footer>
-
-<script>
-  function toggleMenu() {
-    document.getElementById("navLinks").classList.toggle("open");
-  }
-</script>
-
+  <footer>
+    Made with love bynishtha © 2025
+  </footer>
 </body>
 </html>
