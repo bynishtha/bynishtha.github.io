@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Confirm Order - By Nishtha</title>
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    
     :root {
       --bg-color: #fffaf6;
       --primary-color: #fce1e4;
@@ -18,82 +18,120 @@
       --font-logo: 'Pacifico', cursive;
     }
 
-    * { 
-      box-sizing: border-box; 
-      margin: 0; 
-      padding: 0; 
-      font-family: var(--font-family); 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-family);
     }
 
     body {
-      background: var(--bg-color); 
-      color: var(--text-color); 
-      display: flex; 
-      flex-direction: column; 
-      min-height: 100vh; 
+      background: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
-    header { 
-      background: var(--accent-color); 
-      padding: 1rem; 
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center; 
-      font-size: 1.5rem; 
-      font-weight: bold; 
+    header {
+      background: var(--accent-color);
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.5rem;
+      font-weight: bold;
     }
 
-    header a { 
-      text-decoration: none; 
-      color: var(--text-color); 
-      font-family: var(--font-logo); 
+    header a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-family: var(--font-logo);
     }
 
     .cart-btn {
-      background: var(--button-bg); 
-      color: white; 
+      background: var(--button-bg);
+      color: white;
       padding: 0.6rem 1rem;
-      border-radius: 8px; 
-      border: none; 
+      border-radius: 8px;
+      border: none;
       font-weight: bold;
-      display: flex; 
-      align-items: center; 
+      display: flex;
+      align-items: center;
       gap: 0.5rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .cart-btn:hover {
+      background: var(--button-hover);
     }
 
     h1 {
       color: #444;
       text-align: center;
-      padding: 20px 10px 0;
+      padding: 30px 10px 10px;
+      font-size: 2rem;
     }
+
     .confirm-box {
       background: white;
       border: 2px solid #cc6f87;
-      padding: 20px;
+      border-radius: 10px;
+      padding: 30px 20px;
       max-width: 600px;
       margin: 20px auto;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
-    label, input, textarea {
+
+    form label {
+      margin: 15px 0 5px;
+      font-weight: 600;
+      font-size: 1rem;
       display: block;
-      width: 100%;
-      margin: 10px 0;
-      font-size: 1em;
     }
-    button {
-      background: #cc6f87;
+
+    form input,
+    form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1.5px solid #cc6f87;
+      border-radius: 8px;
+      background: #fffaf6;
+      font-size: 1rem;
+    }
+
+    form textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    button[type="submit"] {
+      background: var(--button-bg);
       color: white;
       border: none;
-      padding: 10px;
+      padding: 12px;
+      font-size: 1.1rem;
+      border-radius: 8px;
       cursor: pointer;
+      transition: background 0.3s ease;
       width: 100%;
+      margin-top: 10px;
     }
+
+    button[type="submit"]:hover {
+      background: var(--button-hover);
+    }
+
     table {
       width: 100%;
       margin-top: 20px;
       border-collapse: collapse;
     }
+
     th, td {
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid #ddd;
       padding: 8px;
       text-align: left;
     }
@@ -103,9 +141,26 @@
       padding: 1rem;
       font-size: 0.9rem;
       background-color: var(--accent-color);
+      margin-top: auto;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .confirm-box {
+        margin: 10px 15px;
+        padding: 20px 15px;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- Navbar -->
@@ -119,20 +174,20 @@
   <div class="confirm-box">
     <form id="orderForm">
       <label for="name">Name</label>
-      <input type="text" id="name" required />
+      <input type="text" id="name" placeholder="Enter your name" required />
+
       <label for="address">Address</label>
-      <textarea id="address" rows="3" required></textarea>
+      <textarea id="address" placeholder="Enter your delivery address" required></textarea>
+
       <button type="submit">Place Order</button>
     </form>
     <br>
     <div id="orderSummary"></div>
   </div>
-  
+
   <footer>
     &copy; 2025 By Nishtha. All rights reserved.
   </footer>
-
-  
 
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -140,7 +195,7 @@
     const { jsPDF } = window.jspdf;
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    document.getElementById("orderForm").addEventListener("submit", function(e) {
+    document.getElementById("orderForm").addEventListener("submit", function (e) {
       e.preventDefault();
       const name = document.getElementById("name").value;
       const address = document.getElementById("address").value;
@@ -155,7 +210,7 @@
         total += item.price * item.quantity;
       });
       summary += `</table><p><strong>Total: ₹${total}</strong></p>`;
-      const pdfBtn = `<button onclick="downloadBill('${name}', '${address}', ${total})">Download PDF Bill</button>`;
+      const pdfBtn = `<button onclick="downloadBill('${name}', '${address}', ${total})" style="margin-top:15px; background: #cc6f87; color: white; padding:10px; border:none; border-radius:8px;">Download PDF Bill</button>`;
       summaryDiv.innerHTML = summary + pdfBtn;
       localStorage.removeItem("cart");
     });
@@ -177,4 +232,5 @@
     }
   </script>
 </body>
+
 </html>

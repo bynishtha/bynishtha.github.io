@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    /* Shop page styles */
     :root {
       --bg-color: #fffaf6;
       --primary-color: #fce1e4;
@@ -21,47 +20,48 @@
       --font-logo: 'Pacifico', cursive;
     }
 
-    * { 
-      box-sizing: border-box; 
-      margin: 0; 
-      padding: 0; 
-      font-family: var(--font-family); 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-family);
     }
 
     body {
-      background: var(--bg-color); 
-      color: var(--text-color); 
-      display: flex; 
-      flex-direction: column; 
-      min-height: 100vh; 
+      background: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
-    header { 
-      background: var(--accent-color); 
-      padding: 1rem; 
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center; 
-      font-size: 1.5rem; 
-      font-weight: bold; 
+    header {
+      background: var(--accent-color);
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.5rem;
+      font-weight: bold;
     }
 
-    header a { 
-      text-decoration: none; 
-      color: var(--text-color); 
-      font-family: var(--font-logo); 
+    header a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-family: var(--font-logo);
     }
 
     .cart-btn {
-      background: var(--button-bg); 
-      color: white; 
+      background: var(--button-bg);
+      color: white;
       padding: 0.6rem 1rem;
-      border-radius: 8px; 
-      border: none; 
+      border-radius: 8px;
+      border: none;
       font-weight: bold;
-      display: flex; 
-      align-items: center; 
+      display: flex;
+      align-items: center;
       gap: 0.5rem;
+      cursor: pointer;
     }
 
     main {
@@ -76,13 +76,32 @@
       margin-bottom: 1rem;
     }
 
+    /* Scrollable + Smooth Snap Categories */
+    .categories {
+      display: flex;
+      overflow-x: auto;
+      gap: 0.5rem;
+      padding-bottom: 0.5rem;
+      scrollbar-width: none; /* Firefox */
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .categories::-webkit-scrollbar {
+      display: none; /* Chrome/Safari/Opera */
+    }
+
     .categories button {
-      padding: 0.5rem;
-      margin-right: 1rem;
+      flex: 0 0 auto;
+      padding: 0.5rem 1rem;
       border-radius: 5px;
       border: none;
       background: var(--primary-color);
       cursor: pointer;
+      font-weight: 600;
+      white-space: nowrap;
+      scroll-snap-align: start;
+      transition: background 0.3s;
     }
 
     .categories button:hover {
@@ -93,6 +112,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 2rem;
+      justify-content: center;
     }
 
     .product {
@@ -101,21 +121,26 @@
       width: 200px;
       border-radius: 8px;
       text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
     .product img {
       width: 100%;
+      height: 200px; /* Fix the height */
+      object-fit: cover; /* This will nicely crop the image without distortion */
       border-radius: 5px;
-      height: 10rem;
     }
 
     .product button {
       background: var(--button-bg);
       color: white;
-      padding: 0.5rem;
+      padding: 0.5rem 1rem;
       border: none;
       border-radius: 6px;
       cursor: pointer;
+      margin-top: 0.5rem;
+      font-weight: 600;
+      transition: background 0.3s;
     }
 
     .product button:hover {
@@ -131,11 +156,32 @@
       font-weight: bold;
     }
 
+    .tagline a {
+      color: #ff5f7e;
+      text-decoration: none;
+    }
+
     footer {
       text-align: center;
       padding: 1rem;
       font-size: 0.9rem;
       background-color: var(--accent-color);
+      margin-top: auto;
+    }
+
+    /* Responsive Tweaks */
+    @media (max-width: 768px) {
+      .product {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .product {
+        width: 100%;
+        max-width: 250px;
+      }
     }
   </style>
 </head>
@@ -149,37 +195,40 @@
     <button class="cart-btn">🛒 Cart</button>
   </a>
 </header>
+
 <main>
   <h2>Categories</h2>
   <div class="categories">
     <button onclick="filterProducts('')">All Products</button>
     <button onclick="filterProducts('Flowers')">Flowers</button>
     <button onclick="filterProducts('Crochet')">Crochet</button>
+    <button onclick="filterProducts('Soft Toys')">Soft Toys</button>
+    <button onclick="filterProducts('Others')">Others</button>
   </div>
 
   <section>
     <h2 id="category-title">All Products</h2>
     <div id="product-list" class="products">
-      <!-- Product items will be displayed here -->
+      <!-- Products will load here -->
     </div>
   </section>
 
-  <!-- Custom Orders Link -->
   <div class="tagline">
-    Looking for something unique? <a href="custom-order.html" style="color: #ff5f7e; text-decoration: none; font-weight: bold;">Custom Orders</a>
+    Looking for something unique? <a href="custom-order.html">Custom Orders</a>
   </div>
 </main>
 
 <footer>
-  &copy; 2025 By Nishtha. All rights reserved.
+  Made with love bynishtha © 2025
 </footer>
 
 <script>
-  // Dummy data for the shop products
   const products = [
-    { name: "Red Roses", category: "Flowers", price: 200, image: "images/1.png" },
-    { name: "Blue Crochet Hat", category: "Crochet", price: 500, image: "images/2.png" },
-    { name: "Custom Crochet Blanket", category: "Custom", price: 800, image: "images/3.png  " }
+    { name: "The Cute Chinky", category: "Soft Toys", price: 200, image: "art/Crochet(1).jpg" },
+    { name: "The Sunflower", category: "Flowers", price: 200, image: "art/Flowers.jpg" },
+    { name: "Blue Crochet Beanie", category: "Crochet", price: 500, image: "art/Crochet(6).jpg" },
+    { name: "Custom Made Moon", category: "Others", price: 800, image: "art/Moon.jpg" },
+    { name: "Brown Crochet Bag", category: "Crochet", price: 1000, image: "art/Crochet Bag.jpg" }
   ];
 
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -188,25 +237,25 @@
     const productList = document.getElementById('product-list');
     productList.innerHTML = '';
 
-    const filteredProducts = category ? products.filter(p => p.category === category) : products;
+    const filtered = category ? products.filter(p => p.category === category) : products;
 
-    filteredProducts.forEach(product => {
-      const productDiv = document.createElement('div');
-      productDiv.classList.add('product');
-      productDiv.innerHTML = `
+    filtered.forEach(product => {
+      const item = document.createElement('div');
+      item.className = 'product';
+      item.innerHTML = `
         <img src="${product.image}" alt="${product.name}" />
         <h3>${product.name}</h3>
         <p>₹${product.price}</p>
         <button onclick="addToCart('${product.name}', ${product.price}, '${product.category}')">Add to Cart</button>
       `;
-      productList.appendChild(productDiv);
+      productList.appendChild(item);
     });
   }
 
   function addToCart(name, price, category) {
-    const existingItem = cart.find(item => item.name === name);
-    if (existingItem) {
-      existingItem.quantity++;
+    const found = cart.find(item => item.name === name);
+    if (found) {
+      found.quantity++;
     } else {
       cart.push({ name, price, category, quantity: 1 });
     }
@@ -219,7 +268,6 @@
     document.getElementById('category-title').innerText = category ? `${category} Products` : "All Products";
   }
 
-  // Initialize product list
   updateProductList();
 </script>
 
